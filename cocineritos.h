@@ -41,6 +41,8 @@ typedef struct personaje{
 typedef struct juego{
 	personaje_t stitch;
 	personaje_t reuben;
+	char personaje_activo; //S / R
+	char comida_actual;
 	coordenada_t paredes[MAX_PAREDES];
 	int tope_paredes;
 	objeto_t herramientas[MAX_HERRAMIENTAS];
@@ -49,7 +51,7 @@ typedef struct juego{
 	coordenada_t mesa;
 	objeto_t obstaculos[MAX_OBSTACULOS];
 	int tope_obstaculos;
-	ingrediente_t comida[MAX_COMIDA];
+	comida_t comida[MAX_COMIDA];
 	int tope_comida;
 	ingrediente_t comida_lista[MAX_INGREDIENTES];
 	int tope_comida_lista;
