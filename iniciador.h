@@ -37,7 +37,7 @@
 // terreno
 #define LARGO_TABLERO 21
 #define MAX_AGUJEROS 20
-
+#define POSICION_MESA 10
 
 //PRE: -
 //POST: Carga todos los atributos de los 2 personajes

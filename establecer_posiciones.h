@@ -3,6 +3,7 @@
 
 #include "cocineritos.h"
 #include "iniciador.h"
+#include "jugabilidad.h"
 #include <stdlib.h>
 
 //PRE: -

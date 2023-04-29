@@ -32,7 +32,7 @@ void iniciar_comidas(juego_t* juego, int precio){
         juego->comida[1].ingrediente[0].tipo = MASA;
         juego->comida[1].ingrediente[0].esta_cocinado = false;
         juego->comida[1].ingrediente[0].esta_cortado = false;
-        juego->comida[1].ingrediente[1].tipo = TOMATE;
+        juego->comida[1].ingrediente[1].tipo = JAMON;
         juego->comida[1].ingrediente[1].esta_cocinado = false;
         juego->comida[1].ingrediente[1].esta_cortado = false;
         juego->comida[1].ingrediente[2].tipo = QUESO;

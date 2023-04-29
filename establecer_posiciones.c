@@ -1,32 +1,33 @@
 #include "establecer_posiciones.h"
 
 bool no_esta_ocupado(juego_t juego, int fil, int col){
-    
+    bool rta = false;
+
     for(int i = 0; i < juego.tope_obstaculos; i++){
-        if (juego.obstaculos[i].posicion.fil != fil && juego.obstaculos[i].posicion.col != col){
+      
+        if (distancia_manhattan(juego.obstaculos[i].posicion.fil, juego.obstaculos[i].posicion.col, fil, col) != 0){
+
             i = juego.tope_obstaculos;
-            return true;
+            rta = true;
+        }else{
+            rta =  false;
         }
     }
 
     for(int i = 0; i < juego.tope_herramientas; i++){
-        if (juego.herramientas[i].posicion.fil != fil && juego.herramientas[i].posicion.col != col){
+        if (distancia_manhattan(juego.herramientas[i].posicion.fil, juego.herramientas[i].posicion.col, fil, col) != 0){
             i = juego.tope_herramientas;
-            return true;
+            rta = true;
+        }
+        else{
+            rta =  false;
         }
     }
 
-    for(int i = 0; i < juego.tope_obstaculos; i++){
-       if (juego.obstaculos[i].posicion.fil != fil && juego.obstaculos[i].posicion.col != col){
-            i = juego.tope_obstaculos;
-            return true;
-        } 
-    }
-
-    return false;
+    return rta;
 }
- 
-bool cuadrante_ruben(int i, comida_t comida){
+
+bool ingrediente_de_ruben(int i, comida_t comida){
     char ingrediente = comida.ingrediente[i].tipo;
 
     return (ingrediente == CARNE || ingrediente == MASA || ingrediente == MILANESA);
@@ -77,7 +78,7 @@ void establecer_posicion_ingredientes(comida_t* comida, juego_t juego){
             int col = 0;
             int fil = 0;
                 
-            if(cuadrante_ruben(i, *comida)){
+            if(ingrediente_de_ruben(i, *comida)){
                 fil = rand() % 9 + 11;
                 col = rand() % 19 + 1;
             }else{
