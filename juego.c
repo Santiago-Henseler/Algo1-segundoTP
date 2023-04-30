@@ -18,7 +18,7 @@ int main(){
     
     imprimir_terreno(juego);
 
-    while(true){
+    while(estado_juego(juego) == 0){
         printf("realiza movimento");
         scanf(" %c", &movimiento);
         realizar_jugada(&juego, movimiento);

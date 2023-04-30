@@ -3,6 +3,7 @@
 
 #include "cocineritos.h"
 #include "iniciador.h"
+#include "establecer_posiciones.h"
 
 // Movilidad
 #define DERECHA 'D'
@@ -28,11 +29,7 @@ void movimiento_personaje(personaje_t* personaje, char movimiento, juego_t* jueg
 
 //PRE:
 //POST:
-void cortar_ingrediente(personaje_t personaje, juego_t* juego);
-
-//PRE:
-//POST:
-void usar_horno(personaje_t personaje, juego_t* juego);
+void usar_herramienta(personaje_t personaje, juego_t* juego);
 
 //PRE:
 //POST:
@@ -41,5 +38,9 @@ int distancia_manhattan(int fil1, int col1, int fil2, int col2);
 //PRE:
 //POST:
 void pasar_por_la_mesa(personaje_t* personaje, juego_t* juego);
+
+//PRE:
+//POST:
+void dejar_en_la_salida(personaje_t* personaje, juego_t* juego);
 
 #endif /*__JUGABILIDAD_H__*/

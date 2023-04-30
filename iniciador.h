@@ -40,23 +40,27 @@
 #define POSICION_MESA 10
 
 //PRE: -
-//POST: Carga todos los atributos de los 2 personajes
-void iniciar_personaje(juego_t* juego);
+//POST: Carga las paredes del mapa
+void crear_mapa(juego_t* juego);
+
+//PRE: -
+//POST: Carga los 20 agujeros del juego
+void iniciar_obstaculos(juego_t* juego);
 
 //PRE: Recibe un precio para cargar solo las comidas necesarias
 //POST: Carga todos los atributos de las comidas  
 void iniciar_comidas(juego_t* juego, int precio);
 
 //PRE: -
-//POST: Carga las paredes del mapa
-void crear_mapa(juego_t* juego);
+//POST: Carga todos los atributos de los 2 personajes
+void iniciar_personaje(juego_t* juego);
 
 //PRE: -
 //POST: Carga todos los atributos de los objetos
 void iniciar_objetos(juego_t* juego);
 
-//PRE: -
-//POST: Carga los 20 agujeros del juego
-void iniciar_obstaculos(juego_t* juego);
+//PRE: 
+//POST: 
+void iniciar_salida(juego_t* juego);
 
 #endif /* __INICIADOR_H__*/

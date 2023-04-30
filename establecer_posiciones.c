@@ -33,42 +33,6 @@ bool ingrediente_de_ruben(int i, comida_t comida){
     return (ingrediente == CARNE || ingrediente == MASA || ingrediente == MILANESA);
 }
 
-int col_salida(){
-    
-    int rta = 0;
-
-    if(rand() % 20 > 10){
-        rta = 20;
-    }
-
-    return rta;
-}
-
-void establecer_posicion_personajes(personaje_t* personaje, juego_t juego){
-    bool c = true;
-
-    while (c){
-        int col = 0;
-        int fil = 0;
-        
-        if(personaje->tipo == RUBEN){
-            fil = rand() % 9 + 11;
-            col = rand() % 19 + 1;
-        }
-
-        if(personaje->tipo == STICH){
-            col = rand() % 19 + 1;
-            fil = rand() % 9 + 1;
-        }
-
-        if(no_esta_ocupado(juego, fil, col)){
-            personaje->posicion.col = col;
-            personaje->posicion.fil = fil;
-            c = false;
-        }
-    }
-}
-
 void establecer_posicion_ingredientes(comida_t* comida, juego_t juego){
 
     for(int i = 0; i < comida->tope_ingredientes; i++){
@@ -141,3 +105,47 @@ void establecer_posicion_agujeros(objeto_t* agujero, juego_t juego, int i){
     }
 }
 
+void establecer_posicion_personajes(personaje_t* personaje, juego_t juego){
+    bool c = true;
+
+    while (c){
+        int col = 0;
+        int fil = 0;
+        
+        if(personaje->tipo == RUBEN){
+            fil = rand() % 9 + 11;
+            col = rand() % 19 + 1;
+        }
+
+        if(personaje->tipo == STICH){
+            col = rand() % 19 + 1;
+            fil = rand() % 9 + 1;
+        }
+
+        if(no_esta_ocupado(juego, fil, col)){
+            personaje->posicion.col = col;
+            personaje->posicion.fil = fil;
+            c = false;
+        }
+    }
+}
+
+void establecer_posicion_salida(juego_t* juego){
+    bool c = true;
+
+    int fil = 0;
+    int col = 0;
+
+    while (c){
+        fil = rand() % 9 + 11;
+        col = rand() % 19 + 1;
+        
+        if(no_esta_ocupado(*juego, fil, col)){
+            juego->salida.col = col;
+            juego->salida.fil = fil;
+            c = false;
+        }
+    }
+}
+
+// INTENTAAR MODULARIZAR
