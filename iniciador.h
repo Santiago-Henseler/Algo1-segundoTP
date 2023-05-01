@@ -29,6 +29,7 @@
 #define CUCHILLO  'C'
 #define HORNO  'H'
 #define MATAFUEGO  'M'
+#define FUEGO 'F'
 #define AGUJERO  'A'   
 #define PARED  '#'
 #define MESA  '-'
@@ -38,6 +39,7 @@
 #define LARGO_TABLERO 21
 #define MAX_AGUJEROS 20
 #define POSICION_MESA 10
+#define MOVIMIENTOS_FUEGO 15
 
 //PRE: -
 //POST: Carga las paredes del mapa
@@ -62,5 +64,9 @@ void iniciar_objetos(juego_t* juego);
 //PRE: 
 //POST: 
 void iniciar_salida(juego_t* juego);
+
+//PRE:
+//POST:
+void iniciar_fuego_matafuego(juego_t* juego);
 
 #endif /* __INICIADOR_H__*/

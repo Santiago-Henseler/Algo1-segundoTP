@@ -110,8 +110,9 @@ void dejar_en_la_salida(personaje_t* personaje, juego_t* juego){
 
                     if (personaje->objeto_en_mano == juego->comida[i].ingrediente[j].tipo && esta_listo(j, juego->comida[i])){
                         juego->comida_lista[juego->tope_comida_lista].tipo = juego->comida[i].ingrediente[j].tipo;
-                        juego->tope_comida++;
+                        juego->tope_comida_lista += 1;
                         personaje->objeto_en_mano = SIN_OBJETO_EN_MANO;
+
                     }
                 }
             i = juego->tope_comida;

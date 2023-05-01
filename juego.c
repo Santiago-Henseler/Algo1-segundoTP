@@ -6,7 +6,7 @@
 
 int main(){
 
-    int precio = 160;
+    int precio = 10;
     juego_t juego;
     srand((unsigned)time(NULL));
 

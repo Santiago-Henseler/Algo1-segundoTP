@@ -43,4 +43,8 @@ void pasar_por_la_mesa(personaje_t* personaje, juego_t* juego);
 //POST:
 void dejar_en_la_salida(personaje_t* personaje, juego_t* juego);
 
+//PRE:
+//POST:
+void fuego(juego_t* juego);
+
 #endif /*__JUGABILIDAD_H__*/

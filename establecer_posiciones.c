@@ -148,4 +148,32 @@ void establecer_posicion_salida(juego_t* juego){
     }
 }
 
+void establecer_posicion_fuego_matafuego(juego_t* juego, int posicion, objeto_t tipo){
+
+    bool c = true;
+
+    while (c){
+        int col = 0;
+        int fil = 0;
+        
+        if(posicion == 0){
+            fil = rand() % 9 + 11;
+            col = rand() % 19 + 1;
+        }
+
+        if(posicion == 1){
+            col = rand() % 19 + 1;
+            fil = rand() % 9 + 1;
+        }
+
+        if(no_esta_ocupado(*juego, fil, col)){
+            tipo.posicion.col = col;
+            tipo.posicion.fil  = fil;
+            c = false;
+        }
+
+    }
+}
+
 // INTENTAAR MODULARIZAR
+

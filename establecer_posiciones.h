@@ -30,4 +30,8 @@ bool ingrediente_de_ruben(int i, comida_t comida);
 //POST:
 void establecer_posicion_salida(juego_t* juego);
 
+//PRE:
+//POST:
+void establecer_posicion_fuego_matafuego(juego_t* juego, int posicion, objeto_t tipo);
+
 #endif /*__ESTABLECER_POSICIONES_H__ */
