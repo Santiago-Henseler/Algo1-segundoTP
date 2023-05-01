@@ -1,36 +1,8 @@
 #include "cocineritos.h"
 #include "jugabilidad.h"
+#include "jugabilidad_auxiliar.h"
 #include "iniciador.h"
 #include "establecer_posiciones.h"
-
-// METER EN OTRO ARCHIVO
-bool ya_entregado(juego_t juego, char comida){
-    bool rta = false;
-
-    for(int i = 0; i < juego.tope_comida; i++){
-        if(comida == juego.comida_lista[i].tipo){
-            rta = true;
-        }
-    }
-    return rta;
-}
-
-bool termino_comida(juego_t juego){
-    bool rta = false;
-
-    for(int i = 0; i< juego.tope_comida; i++){
-        
-        if(juego.comida_actual == juego.comida[i].tipo){
-            if(juego.comida[i].ingrediente->tipo == juego.comida_lista->tipo){
-                printf("SE");
-            }
-        }
-    }
-    return rta; 
-}
-
-
-
 
 void inicializar_juego(juego_t* juego, int precio){
 
@@ -145,25 +117,45 @@ void realizar_jugada(juego_t* juego, char movimiento){
                 usar_herramienta(juego->reuben, juego);
             }else if(movimiento == INTERACTUAR_MESA){
                 pasar_por_la_mesa(&juego->reuben, juego);
-            }else if(movimiento == 'P'){
+            }else if(movimiento == DEJAR_EN_SALIDA){
                 dejar_en_la_salida(&juego->reuben, juego);
             }else{
                 movimiento_personaje(&juego->reuben, movimiento, juego);
             }
         }
+
+        if(termino_comida(*juego)){
+            nueva_comida(juego);
+        }
+
     imprimir_terreno(*juego);
 }
 
 int estado_juego(juego_t juego){
     int estado = 0;
 
+    // revisa si se cayo el personaje
+    for(int i = 0; i < juego.tope_obstaculos; i++){
+        if(distancia_manhattan(juego.stitch.posicion.fil, juego.stitch.posicion.col, juego.obstaculos[i].posicion.fil, juego.obstaculos[i].posicion.col) == 0){
+            estado = -1;
+        }else if(distancia_manhattan(juego.reuben.posicion.fil, juego.reuben.posicion.col, juego.obstaculos[i].posicion.fil, juego.obstaculos[i].posicion.col) == 0){
+            estado = -1;
+        }
+    }
+
+    // revisa si ganaste el juego
+    for(int i = 0; i < juego.tope_comida; i++){
+
+        if(juego.comida_actual == juego.comida[i].tipo && i == juego.tope_comida-1 && termino_comida(juego)){ 
+           estado = 1;
+        }
+    }
+
     return estado;
 }
-
 
   // 
   // CREAR FUEGO Y APAGARLO
   // 
-  // FUNCION ESTADO JUEGO 
-  //
-  // FUNCION TERMINO COMIDA HACERLA FUNCIONAR :c
+  // 
+

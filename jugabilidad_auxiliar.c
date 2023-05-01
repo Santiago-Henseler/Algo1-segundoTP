@@ -63,3 +63,28 @@ bool puede_usar_herramienta(personaje_t personaje, juego_t juego, char herramien
     }
     return rta;
 }
+
+bool ya_entregado(juego_t juego, char comida){
+    bool rta = false;
+
+    for(int i = 0; i < juego.tope_comida; i++){
+        if(comida == juego.comida_lista[i].tipo){
+            rta = true;
+        }
+    }
+    return rta;
+}
+
+bool termino_comida(juego_t juego){
+    bool rta = false;
+
+    for(int i = 0; i< juego.tope_comida; i++){
+        
+        if(juego.comida_actual == juego.comida[i].tipo){
+            if(juego.comida[i].tope_ingredientes == juego.tope_comida_lista){
+                rta = true;
+            }
+        }
+    }
+    return rta; 
+}

@@ -120,3 +120,16 @@ void dejar_en_la_salida(personaje_t* personaje, juego_t* juego){
         }
     }
 }
+
+void nueva_comida(juego_t* juego){
+
+    for(int i = 0; i < juego->tope_comida; i++){
+
+        if(juego->comida_actual == juego->comida[i].tipo){ 
+                
+            juego->comida_actual = juego->comida[i+1].tipo;
+            juego->tope_comida_lista = 0;
+            i = juego->tope_comida;
+        }
+    }
+}

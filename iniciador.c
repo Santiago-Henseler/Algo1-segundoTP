@@ -13,7 +13,6 @@ void iniciar_estado_comida(juego_t* juego){
 
 void iniciar_comidas(juego_t* juego, int precio){
 
-    if(precio <= 100 || precio <= 150 || precio > 150){
         juego->tope_comida = 2;
 
         // Inicializo la ensalada
@@ -32,9 +31,8 @@ void iniciar_comidas(juego_t* juego, int precio){
         juego->comida[1].tope_ingredientes = 3;
         
         establecer_posicion_ingredientes(&juego->comida[1], *juego);
-
-    }
-    if(precio <= 150 || precio > 150){
+        
+    if(precio > 100){
         // Inicializo Hamburgesa
         juego->comida[2].tipo = HAMBURGESA;
         juego->comida[2].ingrediente[0].tipo = LECHUGA;

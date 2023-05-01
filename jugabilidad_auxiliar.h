@@ -5,24 +5,32 @@
 #include "iniciador.h"
 #include "establecer_posiciones.h"
 
-//PRE:
-//POST:
+//PRE:-
+//POST: Devuelve un entero que es la distancia a un punto
 int distancia_manhattan(int fil1, int col1, int fil2, int col2);
 
-//PRE:
-//POST:
+//PRE:-
+//POST: Revisa si tiene un objeto y devuelve true si no tiene
 bool no_tiene_objeto_en_mano(personaje_t personaje);
 
-//PRE:
-//POST:
+//PRE:-
+//POST: Revisa si la mesa esta ocupada y devuelve false si lo esta
 bool mesa_vacia(int fil, int col);
 
-//PRE:
-//POST:
+//PRE:-
+//POST: Revisa si el ingrediente esta preparado y devuelve true si lo esta
 bool esta_listo(int i, comida_t comida);
 
-//PRE:
-//POST:
+//PRE:-
+//POST: Revisa si esta a la distancia necesaria para usar una herramienta y devuelve true si puede usarla
 bool puede_usar_herramienta(personaje_t personaje, juego_t juego, char herramienta);
+
+//PRE:-
+//POST:
+bool ya_entregado(juego_t juego, char comida);
+
+//PRE:-
+//POST: Revisa si la comida actual esta preparada
+bool termino_comida(juego_t juego);
 
 #endif /*__JUGABILIDAD_AUXILIAR_H__*/

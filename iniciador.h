@@ -61,8 +61,8 @@ void iniciar_personaje(juego_t* juego);
 //POST: Carga todos los atributos de los objetos
 void iniciar_objetos(juego_t* juego);
 
-//PRE: 
-//POST: 
+//PRE: -
+//POST: Inicia aleatoreamente la ubicacio de la salida 
 void iniciar_salida(juego_t* juego);
 
 //PRE:
