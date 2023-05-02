@@ -108,7 +108,6 @@ void iniciar_obstaculos(juego_t* juego){
     for(int i = 0; i < juego->tope_obstaculos; i++){
 
         establecer_posicion_agujeros(&juego->obstaculos[i],*juego, i);
-
         juego->obstaculos[i].tipo = AGUJERO;
     }
 

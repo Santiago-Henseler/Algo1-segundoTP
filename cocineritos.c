@@ -122,7 +122,7 @@ void realizar_jugada(juego_t* juego, char movimiento){
         }else if(movimiento == DEJAR_EN_SALIDA && juego->movimientos < 15){
             dejar_en_la_salida(&juego->reuben, juego);
         }else if(movimiento == USAR_MATAFUEGO){
-            apagar_fuego(&juego->stitch, juego);
+            apagar_fuego(&juego->reuben, juego);
         }else{
             movimiento_personaje(&juego->reuben, movimiento, juego);
         }
