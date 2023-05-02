@@ -6,13 +6,13 @@
 
 int main(){
 
-    int precio = 100;
+    int precio = 0;
+    char movimiento = ' ';
+    
     juego_t juego;
     srand((unsigned)time(NULL));
 
-    char movimiento = ' ';
-    
-    //calcular_precio_chambuchito(&precio);
+    calcular_precio_chambuchito(&precio);
 
     inicializar_juego(&juego, precio);
     
