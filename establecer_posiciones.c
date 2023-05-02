@@ -6,8 +6,6 @@ bool no_esta_ocupado(juego_t juego, int fil, int col){
     for(int i = 0; i < juego.tope_obstaculos; i++){
       
         if (distancia_manhattan(juego.obstaculos[i].posicion.fil, juego.obstaculos[i].posicion.col, fil, col) != 0){
-
-            i = juego.tope_obstaculos;
             rta = true;
         }else{
             rta =  false;
@@ -16,7 +14,6 @@ bool no_esta_ocupado(juego_t juego, int fil, int col){
 
     for(int i = 0; i < juego.tope_herramientas; i++){
         if (distancia_manhattan(juego.herramientas[i].posicion.fil, juego.herramientas[i].posicion.col, fil, col) != 0){
-            i = juego.tope_herramientas;
             rta = true;
         }
         else{
