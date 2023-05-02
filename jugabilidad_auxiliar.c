@@ -88,3 +88,16 @@ bool termino_comida(juego_t juego){
     }
     return rta; 
 }
+
+void hud(juego_t juego){
+
+    char objeto = SIN_OBJETO_EN_MANO;
+
+    if(juego.personaje_activo == 'S'){
+        objeto = juego.stitch.objeto_en_mano;
+    }else{
+        objeto = juego.reuben.objeto_en_mano;
+    }
+
+    printf("Personaje activo: %c Objeto activo: %c\n", juego.personaje_activo, objeto);
+}

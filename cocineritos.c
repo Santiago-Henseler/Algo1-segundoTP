@@ -24,9 +24,11 @@ void inicializar_juego(juego_t* juego, int precio){
 }
 
 void imprimir_terreno(juego_t juego){
-  
+    
     // limpiamos la pantalla
-    //system("clear");
+    system("clear");
+
+    hud(juego);
 
     char terreno[LARGO_TABLERO][LARGO_TABLERO];
 
@@ -72,7 +74,9 @@ void imprimir_terreno(juego_t juego){
    
    // posiciones de las herramientas
     for(int i = 0; i < juego.tope_herramientas; i++){
-        terreno[juego.herramientas[i].posicion.fil][juego.herramientas[i].posicion.col] = juego.herramientas[i].tipo; 
+        if(juego.reuben.objeto_en_mano != juego.herramientas[i].tipo && juego.stitch.objeto_en_mano != juego.herramientas[i].tipo){
+            terreno[juego.herramientas[i].posicion.fil][juego.herramientas[i].posicion.col] = juego.herramientas[i].tipo; 
+        }
     }
 
     // posiciones de los personajes
@@ -88,46 +92,46 @@ void imprimir_terreno(juego_t juego){
 }
 
 void realizar_jugada(juego_t* juego, char movimiento){
-    /*
+   
     if(juego->movimientos == MOVIMIENTOS_FUEGO){
         iniciar_fuego_matafuego(juego);
-        juego->movimientos += 1;
-    }else if(juego->movimientos == 16){
+    }
+   
+    juego->movimientos += 1;
 
-
-    }else{
-        */
-        juego->movimientos += 1;
-
-        if(juego->personaje_activo == STICH){
-            if(movimiento == CAMBIO_PERSONAJE){
-                juego->personaje_activo = RUBEN;
-            }else if(movimiento == CORTAR){
-                usar_herramienta(juego->stitch, juego);
-            }else if(movimiento == INTERACTUAR_MESA){
-                pasar_por_la_mesa(&juego->stitch, juego);
-            }else{
-                movimiento_personaje(&juego->stitch, movimiento, juego);
-            }
+    if(juego->personaje_activo == STICH){
+        if(movimiento == CAMBIO_PERSONAJE){
+            juego->personaje_activo = RUBEN;
+        }else if(movimiento == CORTAR && juego->movimientos < 15){
+            usar_herramienta(juego->stitch, juego);
+        }else if(movimiento == INTERACTUAR_MESA && juego->movimientos < 15){
+            pasar_por_la_mesa(&juego->stitch, juego);
+        }else if(movimiento == USAR_MATAFUEGO){
+            apagar_fuego(&juego->stitch, juego);
+        }else{
+            movimiento_personaje(&juego->stitch, movimiento, juego);
         }
-        else if(juego->personaje_activo == RUBEN){
-            if(movimiento == CAMBIO_PERSONAJE){
-                juego->personaje_activo = STICH;
-            }else if(movimiento == COCINAR){
-                usar_herramienta(juego->reuben, juego);
-            }else if(movimiento == INTERACTUAR_MESA){
-                pasar_por_la_mesa(&juego->reuben, juego);
-            }else if(movimiento == DEJAR_EN_SALIDA){
-                dejar_en_la_salida(&juego->reuben, juego);
-            }else{
-                movimiento_personaje(&juego->reuben, movimiento, juego);
-            }
+    }
+    else if(juego->personaje_activo == RUBEN){
+        if(movimiento == CAMBIO_PERSONAJE){
+            juego->personaje_activo = STICH;
+        }else if(movimiento == COCINAR && juego->movimientos < 15){
+            usar_herramienta(juego->reuben, juego);
+        }else if(movimiento == INTERACTUAR_MESA && juego->movimientos < 15){
+            pasar_por_la_mesa(&juego->reuben, juego);
+        }else if(movimiento == DEJAR_EN_SALIDA && juego->movimientos < 15){
+            dejar_en_la_salida(&juego->reuben, juego);
+        }else if(movimiento == USAR_MATAFUEGO){
+            apagar_fuego(&juego->stitch, juego);
+        }else{
+            movimiento_personaje(&juego->reuben, movimiento, juego);
         }
-
-        if(termino_comida(*juego)){
-            nueva_comida(juego);
-        }
-
+    }
+    
+    if(termino_comida(*juego)){
+        nueva_comida(juego);
+    }
+    
     imprimir_terreno(*juego);
 }
 
@@ -153,9 +157,3 @@ int estado_juego(juego_t juego){
 
     return estado;
 }
-
-  // 
-  // CREAR FUEGO Y APAGARLO
-  // 
-  // 
-

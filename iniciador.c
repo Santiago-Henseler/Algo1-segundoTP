@@ -99,8 +99,6 @@ void iniciar_objetos(juego_t* juego){
 
     juego->herramientas[3].tipo = HORNO;
     establecer_posicion_objetos(&juego->herramientas[3], *juego);
-
-    juego->herramientas[4].tipo = MATAFUEGO;
 }
 
 void iniciar_obstaculos(juego_t* juego){
@@ -114,8 +112,6 @@ void iniciar_obstaculos(juego_t* juego){
         juego->obstaculos[i].tipo = AGUJERO;
     }
 
-    juego->obstaculos[juego->tope_obstaculos].tipo = FUEGO;
-    juego->tope_obstaculos += 1;
 }
 
 void iniciar_personaje(juego_t* juego){
@@ -136,26 +132,28 @@ void iniciar_salida(juego_t* juego){
 
 void iniciar_fuego_matafuego(juego_t* juego){
     
-    int posicion = rand() % 1 + 9;
+    juego->obstaculos[juego->tope_obstaculos].tipo = FUEGO;
+    juego->tope_obstaculos += 1;
 
-    if(posicion < 5){
-        printf("m");
+    juego->herramientas[4].tipo = MATAFUEGO;
+    juego->tope_herramientas += 1;
+
+    int posicion = rand() % 19 + 1;
+
+    if(posicion < 10){
         posicion = 0;
     }else{
-        printf("ma");
         posicion = 1;
     }
 
     for(int i = 0; i < juego->tope_obstaculos; i++){
-        if(juego->obstaculos[i].tipo == 'F'){
+        if(juego->obstaculos[i].tipo == FUEGO){
             
-            establecer_posicion_fuego_matafuego(juego, posicion, juego->obstaculos[i]);
+            establecer_posicion_fuego_matafuego(juego, posicion, &juego->obstaculos[i]);
         }
     }
 
-    establecer_posicion_fuego_matafuego(juego, posicion, juego->herramientas[juego->tope_herramientas]);
+    establecer_posicion_fuego_matafuego(juego, posicion, &juego->herramientas[4]);
 }
 
 // FUNCION CREAR MAPA NO SIRVE
-
-// HACER FUNNCIONAR EL FUEGO

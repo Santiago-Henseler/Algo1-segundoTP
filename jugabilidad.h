@@ -19,6 +19,7 @@
 #define COCINAR 'H'
 #define INTERACTUAR_MESA 'T'
 #define DEJAR_EN_SALIDA 'P'
+#define USAR_MATAFUEGO 'M'
 
 //PRE:-
 //POST: Mueve el personaje en la direccion recibida
@@ -39,5 +40,9 @@ void dejar_en_la_salida(personaje_t* personaje, juego_t* juego);
 //PRE:-
 //POST: Inicia los ingredientes de la siguiente comida
 void nueva_comida(juego_t* juego);
+
+//PRE:-
+//POST: Si tenes el matafuego y estas a una distancia menor a 2, desactiva el fuego y permite seguir jugando
+void apagar_fuego(personaje_t* personaje, juego_t* juego);
 
 #endif /*__JUGABILIDAD_H__*/

@@ -65,8 +65,8 @@ void iniciar_objetos(juego_t* juego);
 //POST: Inicia aleatoreamente la ubicacio de la salida 
 void iniciar_salida(juego_t* juego);
 
-//PRE:
-//POST:
+//PRE:-
+//POST: Inicia aleatoreamente la ubicacio del matafuegos y el fuego
 void iniciar_fuego_matafuego(juego_t* juego);
 
 #endif /* __INICIADOR_H__*/

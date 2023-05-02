@@ -148,13 +148,14 @@ void establecer_posicion_salida(juego_t* juego){
     }
 }
 
-void establecer_posicion_fuego_matafuego(juego_t* juego, int posicion, objeto_t tipo){
+void establecer_posicion_fuego_matafuego(juego_t* juego, int posicion, objeto_t* tipo){
 
     bool c = true;
 
+    int col = 0;
+    int fil = 0;
+
     while (c){
-        int col = 0;
-        int fil = 0;
         
         if(posicion == 0){
             fil = rand() % 9 + 11;
@@ -167,8 +168,8 @@ void establecer_posicion_fuego_matafuego(juego_t* juego, int posicion, objeto_t 
         }
 
         if(no_esta_ocupado(*juego, fil, col)){
-            tipo.posicion.col = col;
-            tipo.posicion.fil  = fil;
+            tipo->posicion.col = col;
+            tipo->posicion.fil  = fil;
             c = false;
         }
 

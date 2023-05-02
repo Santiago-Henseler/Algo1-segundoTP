@@ -33,4 +33,8 @@ bool ya_entregado(juego_t juego, char comida);
 //POST: Revisa si la comida actual esta preparada
 bool termino_comida(juego_t juego);
 
+//PRE:-
+//POST: Muestra por pantalla el personaje activo y lo que lleva en la mano
+void hud(juego_t juego);
+
 #endif /*__JUGABILIDAD_AUXILIAR_H__*/
