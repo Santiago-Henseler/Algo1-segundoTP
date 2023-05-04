@@ -58,8 +58,8 @@ void iniciar_comidas(juego_t* juego, int precio){
         juego->comida[3].tope_ingredientes = 6;
         establecer_posicion_ingredientes(&juego->comida[3], *juego);
 
-        printf(" %i", juego->comida[3].ingrediente[0].posicion.col);
-        printf(" %i", juego->comida[3].ingrediente[2].posicion.col);
+
+
 
         juego->tope_comida += 1;
     }
