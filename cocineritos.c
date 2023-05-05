@@ -14,8 +14,8 @@ void inicializar_juego(juego_t* juego, int precio){
 
     crear_mapa(juego);
     iniciar_obstaculos(juego);
-    iniciar_comidas(juego, precio);
     iniciar_objetos(juego);
+    iniciar_comidas(juego, precio);
     iniciar_personaje(juego);
     iniciar_salida(juego);
   

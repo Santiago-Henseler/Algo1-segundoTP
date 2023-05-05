@@ -13,13 +13,14 @@ void iniciar_estado_comida(juego_t* juego){
 
 void iniciar_comidas(juego_t* juego, int precio){
 
-        juego->tope_comida = 2;
+        juego->tope_comida = 0;
 
         // Inicializo la ensalada
         juego->comida[0].tipo = ENSALADA;
         juego->comida[0].ingrediente[0].tipo = LECHUGA;
         juego->comida[0].ingrediente[1].tipo = TOMATE;
         juego->comida[0].tope_ingredientes = 2;
+        juego->tope_comida++;
 
         establecer_posicion_ingredientes(&juego->comida[0], *juego);
        
@@ -29,10 +30,11 @@ void iniciar_comidas(juego_t* juego, int precio){
         juego->comida[1].ingrediente[1].tipo = JAMON;
         juego->comida[1].ingrediente[2].tipo = QUESO;
         juego->comida[1].tope_ingredientes = 3;
+        juego->tope_comida++;
         
         establecer_posicion_ingredientes(&juego->comida[1], *juego);
         
-    if(precio > 100){
+    if(precio > SEGUNDO_MENU){
         // Inicializo Hamburgesa
         juego->comida[2].tipo = HAMBURGESA;
         juego->comida[2].ingrediente[0].tipo = LECHUGA;
@@ -40,12 +42,12 @@ void iniciar_comidas(juego_t* juego, int precio){
         juego->comida[2].ingrediente[2].tipo = CARNE;
         juego->comida[2].ingrediente[3].tipo = PAN;
         juego->comida[2].tope_ingredientes = 4;
+        juego->tope_comida++;
 
         establecer_posicion_ingredientes(&juego->comida[2], *juego);
-
-        juego->tope_comida += 1;
     }
-    if(precio > 150){
+
+    if(precio > TERCER_MENU){
         // Inicializo sanguche
         juego->comida[3].tipo = SANGUCHE;
         juego->comida[3].ingrediente[0].tipo = LECHUGA;
@@ -58,10 +60,7 @@ void iniciar_comidas(juego_t* juego, int precio){
         juego->comida[3].tope_ingredientes = 6;
         establecer_posicion_ingredientes(&juego->comida[3], *juego);
 
-
-
-
-        juego->tope_comida += 1;
+        juego->tope_comida++;
     }
 
     iniciar_estado_comida(juego);
@@ -86,26 +85,35 @@ void crear_mapa(juego_t* juego){
 
 void iniciar_objetos(juego_t* juego){
     
-    juego->tope_herramientas = 4;
+    juego->tope_herramientas = 0;
 
     juego->herramientas[0].tipo = CUCHILLO;
     establecer_posicion_objetos(&juego->herramientas[0], *juego);
 
+    juego->tope_herramientas++;
+
     juego->herramientas[1].tipo = CUCHILLO;
     establecer_posicion_objetos(&juego->herramientas[1], *juego);
+
+    juego->tope_herramientas++;
 
     juego->herramientas[2].tipo = HORNO;
     establecer_posicion_objetos(&juego->herramientas[2], *juego);
 
+    juego->tope_herramientas++;
+
     juego->herramientas[3].tipo = HORNO;
     establecer_posicion_objetos(&juego->herramientas[3], *juego);
+
+    juego->tope_herramientas++;
 }
 
 void iniciar_obstaculos(juego_t* juego){
+    juego->tope_obstaculos = 0;
 
     for(int i = 0; i < MAX_AGUJEROS; i++){
-        juego->tope_obstaculos++;
         establecer_posicion_agujeros(&juego->obstaculos[i],*juego, i);
+        juego->tope_obstaculos++;
         juego->obstaculos[i].tipo = AGUJERO;
     }
 
@@ -130,10 +138,10 @@ void iniciar_salida(juego_t* juego){
 void iniciar_fuego_matafuego(juego_t* juego){
     
     juego->obstaculos[juego->tope_obstaculos].tipo = FUEGO;
-    juego->tope_obstaculos += 1;
+    juego->tope_obstaculos++;
 
     juego->herramientas[4].tipo = MATAFUEGO;
-    juego->tope_herramientas += 1;
+    juego->tope_herramientas++;
 
     int posicion = rand() % 19 + 1;
 

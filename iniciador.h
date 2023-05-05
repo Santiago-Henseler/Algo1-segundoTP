@@ -35,11 +35,15 @@
 #define MESA  '-'
 #define SALIDAD  'P'
 
-// terreno
+// TERRENO
 #define LARGO_TABLERO 21
 #define MAX_AGUJEROS 20
 #define POSICION_MESA 10
 #define MOVIMIENTOS_FUEGO 15
+
+// PRECIOS
+#define SEGUNDO_MENU 100
+#define TERCER_MENU 150
 
 //PRE: -
 //POST: Carga las paredes del mapa

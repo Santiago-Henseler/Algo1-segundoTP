@@ -55,7 +55,7 @@ void movimiento_personaje(personaje_t* personaje, char movimiento, juego_t* jueg
     }
 
     
-    if(movimiento == ACCION_AGARRAR && juego->movimientos > 15){
+    if(movimiento == ACCION_AGARRAR && juego->movimientos > MOVIMIENTOS_FUEGO){
         agarrar_soltar_matafuego(personaje,  juego);
     }
     if(movimiento == ACCION_AGARRAR){
