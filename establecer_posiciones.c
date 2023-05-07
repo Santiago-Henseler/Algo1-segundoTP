@@ -176,5 +176,3 @@ void establecer_posicion_fuego_matafuego(juego_t* juego, int posicion, objeto_t*
 
     }
 }
-
-// INTENTAAR MODULARIZAR

@@ -89,6 +89,17 @@ bool termino_comida(juego_t juego){
     return rta; 
 }
 
+bool puede_avanzar(int fil, int col){
+    bool rta = true;
+
+    if(col == 0 || col == 20){
+        rta = false;
+    }else if(fil == 0 || fil == 10 || fil == 20){
+        rta = false;
+    }
+    return rta;
+}
+
 void hud(juego_t juego){
 
     char objeto = SIN_OBJETO_EN_MANO;

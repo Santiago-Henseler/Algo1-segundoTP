@@ -26,7 +26,7 @@ bool esta_listo(int i, comida_t comida);
 bool puede_usar_herramienta(personaje_t personaje, juego_t juego, char herramienta);
 
 //PRE:-
-//POST:
+//POST: Devuelve true si la comida actual ya esta terminada y entregada
 bool ya_entregado(juego_t juego, char comida);
 
 //PRE:-
@@ -36,5 +36,9 @@ bool termino_comida(juego_t juego);
 //PRE:-
 //POST: Muestra por pantalla el personaje activo y lo que lleva en la mano
 void hud(juego_t juego);
+
+//PRE:-
+//POST:Devuelve true si la posicion dada es valida para avanzar
+bool puede_avanzar(int fil, int col);
 
 #endif /*__JUGABILIDAD_AUXILIAR_H__*/

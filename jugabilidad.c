@@ -44,13 +44,13 @@ void agarrar_soltar_matafuego(personaje_t* personaje, juego_t* juego){
 
 void movimiento_personaje(personaje_t* personaje, char movimiento, juego_t* juego){
 
-    if(movimiento == DERECHA && personaje->posicion.col + 1 != juego->paredes->col){
+    if(movimiento == DERECHA && puede_avanzar(personaje->posicion.fil, personaje->posicion.col + 1 )){
         personaje->posicion.col += 1;
-    }else if(movimiento == IZQUIERDA && personaje->posicion.col - 1 != juego->paredes->col){
+    }else if(movimiento == IZQUIERDA && puede_avanzar(personaje->posicion.fil, personaje->posicion.col - 1 )){
         personaje->posicion.col -= 1;
-    }else if(movimiento == ARRIBA && personaje->posicion.fil - 1 != juego->paredes->fil){
+    }else if(movimiento == ARRIBA && puede_avanzar(personaje->posicion.fil -1, personaje->posicion.col + 1 )){
         personaje->posicion.fil -= 1;
-    }else if(movimiento == ABAJO && personaje->posicion.fil + 1 != juego->paredes->fil){
+    }else if(movimiento == ABAJO && puede_avanzar(personaje->posicion.fil +1, personaje->posicion.col + 1 )){
         personaje->posicion.fil += 1;
     }
 

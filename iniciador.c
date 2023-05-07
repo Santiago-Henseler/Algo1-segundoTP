@@ -75,7 +75,7 @@ void crear_mapa(juego_t* juego){
                 if(i == 0 || i == LARGO_TABLERO-1 || i == (LARGO_TABLERO-1)/10){
                     juego->paredes[j].fil = i;
                     juego->paredes[j].col = j;
-                } else if(j == 0 || j == LARGO_TABLERO){
+                }else if(j == 0 || j == LARGO_TABLERO){
                     juego->paredes[j].fil = i;
                     juego->paredes[j].col = j;
                 }
@@ -161,4 +161,3 @@ void iniciar_fuego_matafuego(juego_t* juego){
     establecer_posicion_fuego_matafuego(juego, posicion, &juego->herramientas[4]);
 }
 
-// FUNCION CREAR MAPA NO SIRVE
