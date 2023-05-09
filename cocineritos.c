@@ -106,7 +106,7 @@ void realizar_jugada(juego_t* juego, char movimiento){
             usar_herramienta(juego->stitch, juego);
         }else if(movimiento == INTERACTUAR_MESA && juego->movimientos < 15){
             pasar_por_la_mesa(&juego->stitch, juego);
-        }else if(movimiento == USAR_MATAFUEGO){
+        }else if(movimiento == USAR_MATAFUEGO && juego->movimientos >= 15){
             apagar_fuego(&juego->stitch, juego);
         }else{
             movimiento_personaje(&juego->stitch, movimiento, juego);
