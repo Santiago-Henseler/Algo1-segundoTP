@@ -24,17 +24,13 @@ void agarrar_soltar_alimentos(personaje_t* personaje, juego_t* juego){
     }
 }
 
-void agarrar_soltar_matafuego(personaje_t* personaje, juego_t* juego){
+void agarrar_matafuego(personaje_t* personaje, juego_t* juego){
 
     for(int i = 0; i < juego->tope_herramientas; i++){
 
         if(juego->herramientas[i].tipo == MATAFUEGO){ 
             if(distancia_manhattan(juego->herramientas[i].posicion.fil, juego->herramientas[i].posicion.col, personaje->posicion.fil, personaje->posicion.col) == 0 && no_tiene_objeto_en_mano(*personaje)){
                 personaje->objeto_en_mano = juego->herramientas[i].tipo;
-            }else if(personaje->objeto_en_mano == juego->herramientas[i].tipo){
-                personaje->objeto_en_mano = ' ';
-                juego->herramientas[i].posicion.col = personaje->posicion.col;
-                juego->herramientas[i].posicion.fil = personaje->posicion.fil;
             }
             i = juego->tope_herramientas;
         }
@@ -55,8 +51,8 @@ void movimiento_personaje(personaje_t* personaje, char movimiento, juego_t* jueg
     }
 
     
-    if(movimiento == ACCION_AGARRAR && juego->movimientos > MOVIMIENTOS_FUEGO){
-        agarrar_soltar_matafuego(personaje,  juego);
+    if(juego->movimientos > MOVIMIENTOS_FUEGO){
+        agarrar_matafuego(personaje,  juego);
     }
     if(movimiento == ACCION_AGARRAR){
         agarrar_soltar_alimentos(personaje, juego);
