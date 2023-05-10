@@ -13,7 +13,7 @@
 
 // Acciones
 #define CAMBIO_PERSONAJE 'X'
-#define SIN_OBJETO_EN_MANO ' '
+#define SIN_OBJETO_EN_MANO 'V'
 #define ACCION_AGARRAR 'R'
 #define CORTAR 'C'
 #define COCINAR 'H'
