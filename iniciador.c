@@ -121,11 +121,11 @@ void iniciar_obstaculos(juego_t* juego){
 
 void iniciar_personaje(juego_t* juego){
 
-    juego->stitch.objeto_en_mano = ' ';
+    juego->stitch.objeto_en_mano = SIN_OBJETO_EN_MANO;
     juego->stitch.tipo = STICH;
     establecer_posicion_personajes(&juego->stitch, *juego);
 
-    juego->reuben.objeto_en_mano = ' ';
+    juego->reuben.objeto_en_mano = SIN_OBJETO_EN_MANO;
     juego->reuben.tipo = RUBEN;
     establecer_posicion_personajes(&juego->reuben, *juego);
    

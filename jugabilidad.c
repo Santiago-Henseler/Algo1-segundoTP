@@ -13,7 +13,7 @@ void agarrar_soltar_alimentos(personaje_t* personaje, juego_t* juego){
                     personaje->objeto_en_mano = juego->comida[i].ingrediente[j].tipo;
                     j = juego->comida[i].tope_ingredientes;
                 }else if(personaje->objeto_en_mano == juego->comida[i].ingrediente[j].tipo){
-                    personaje->objeto_en_mano = ' ';
+                    personaje->objeto_en_mano = SIN_OBJETO_EN_MANO;
                     juego->comida[i].ingrediente[j].posicion.col = personaje->posicion.col;
                     juego->comida[i].ingrediente[j].posicion.fil = personaje->posicion.fil;
                     j = juego->comida[i].tope_ingredientes;
@@ -44,9 +44,9 @@ void movimiento_personaje(personaje_t* personaje, char movimiento, juego_t* jueg
         personaje->posicion.col += 1;
     }else if(movimiento == IZQUIERDA && puede_avanzar(personaje->posicion.fil, personaje->posicion.col - 1 )){
         personaje->posicion.col -= 1;
-    }else if(movimiento == ARRIBA && puede_avanzar(personaje->posicion.fil -1, personaje->posicion.col + 1 )){
+    }else if(movimiento == ARRIBA && puede_avanzar(personaje->posicion.fil -1, personaje->posicion.col)){
         personaje->posicion.fil -= 1;
-    }else if(movimiento == ABAJO && puede_avanzar(personaje->posicion.fil +1, personaje->posicion.col + 1 )){
+    }else if(movimiento == ABAJO && puede_avanzar(personaje->posicion.fil +1, personaje->posicion.col)){
         personaje->posicion.fil += 1;
     }
 

@@ -1,7 +1,7 @@
 #include "jugabilidad_auxiliar.h"
 
 bool no_tiene_objeto_en_mano(personaje_t personaje){
-
+    
     return personaje.objeto_en_mano == SIN_OBJETO_EN_MANO;
 }
 

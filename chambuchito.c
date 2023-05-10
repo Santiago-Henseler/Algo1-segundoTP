@@ -148,7 +148,7 @@ void calcular_precio_chambuchito(int* p_final){
     }
 
     precio_sanguche = CALCULAR_PRECIO(valor_total, tamaño);
-    printf("El valor del pedido es -%i-", precio_sanguche);
+    printf("El valor del pedido es -%i-\n", precio_sanguche);
 
     *p_final = precio_sanguche;
 }

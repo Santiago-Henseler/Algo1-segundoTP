@@ -7,6 +7,7 @@
 void inicializar_juego(juego_t* juego, int precio){
 
     juego->personaje_activo = STICH;
+
     juego->precio_total = precio;
 
     juego->mesa.col = POSICION_MESA;
