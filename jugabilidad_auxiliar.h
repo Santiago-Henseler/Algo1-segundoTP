@@ -39,6 +39,6 @@ void hud(juego_t juego);
 
 //PRE:-
 //POST:Devuelve true si la posicion dada es valida para avanzar
-bool puede_avanzar(int fil, int col);
+bool puede_avanzar(int fil, int col, juego_t juego);
 
 #endif /*__JUGABILIDAD_AUXILIAR_H__*/

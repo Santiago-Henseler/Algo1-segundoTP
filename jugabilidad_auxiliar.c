@@ -1,7 +1,7 @@
 #include "jugabilidad_auxiliar.h"
 
 bool no_tiene_objeto_en_mano(personaje_t personaje){
-    
+
     return personaje.objeto_en_mano == SIN_OBJETO_EN_MANO;
 }
 
@@ -89,7 +89,7 @@ bool termino_comida(juego_t juego){
     return rta; 
 }
 
-bool puede_avanzar(int fil, int col){
+bool puede_avanzar(int fil, int col, juego_t juego){
     bool rta = true;
 
     if(col == 0 || col == 20){
@@ -97,6 +97,12 @@ bool puede_avanzar(int fil, int col){
     }else if(fil == 0 || fil == 10 || fil == 20){
         rta = false;
     }
+    for(int i = 0; i < juego.tope_herramientas; i++){
+        if(juego.herramientas[i].tipo == HORNO && distancia_manhattan(fil, col, juego.herramientas[i].posicion.fil, juego.herramientas[i].posicion.col) == 0){
+            rta = false;
+        }
+    }
+
     return rta;
 }
 
