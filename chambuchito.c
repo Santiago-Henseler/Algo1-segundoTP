@@ -2,8 +2,8 @@
 #include "chambuchito.h"
 
 // Declaración de constantes 
-const int TAMAÑO_MAX = 30;
-const int TAMAÑO_MIN = 15;
+const int TAMANO_MAX = 30;
+const int TAMANO_MIN = 15;
 
 const char PAN_BLANCO = 'B';
 const char PAN_INTEGRAL = 'I';
@@ -27,19 +27,19 @@ const char SI_CALENTAR = 'S';
 const double AJUSTE_PRECIO = 0.3;
 
 // PRE: - 
-// POST: Selecciona el tamaño de pan deseado por el usuario en un intervalo = [15,30]
-void TAMAÑO_PAN(int* tamaño){
+// POST: Selecciona el tamaNo de pan deseado por el usuario en un intervalo = [15,30]
+void TAMANO_PAN(int* tamano){
 
-    printf("¿De qué medida dese su chambuchito? El tamaño es entre 15cm y 30cm\n");
-    scanf("%i", tamaño);
+    printf("¿De qué medida dese su chambuchito? El tamaNo es entre 15cm y 30cm\n");
+    scanf("%i", tamano);
 
-    while (*tamaño > TAMAÑO_MAX || *tamaño < TAMAÑO_MIN){
-        if(*tamaño > TAMAÑO_MAX){
-            printf("Te exediste un poco, el tamaño es entre 15cm y 30cm\n");
-            scanf("%i", tamaño); 
+    while (*tamano > TAMANO_MAX || *tamano < TAMANO_MIN){
+        if(*tamano > TAMANO_MAX){
+            printf("Te exediste un poco, el tamaNo es entre 15cm y 30cm\n");
+            scanf("%i", tamano); 
         }else{
-            printf("Te quedaste medio corto, el tamaño es entre 15cm y 30cm\n");
-            scanf("%i", tamaño);
+            printf("Te quedaste medio corto, el tamaNo es entre 15cm y 30cm\n");
+            scanf("%i", tamano);
         }
     }
 }
@@ -119,10 +119,10 @@ void CALENTAR(){
 
 //PRE: Recibir dos valores enteros validos
 //POST: Devuelve el valor del sanguche a partir de una ecuación
-int CALCULAR_PRECIO(int valor_total, int tamaño){
+int CALCULAR_PRECIO(int valor_total, int tamaNo){
     int respuesta = 0;
 
-    respuesta =  (int)(valor_total * AJUSTE_PRECIO * tamaño);
+    respuesta =  (int)(valor_total * AJUSTE_PRECIO * tamaNo);
     return respuesta;
 }
 
@@ -131,8 +131,8 @@ void calcular_precio_chambuchito(int* p_final){
     int valor_total = 0;
     int precio_sanguche = 0;
 
-    int tamaño = 0;
-    TAMAÑO_PAN(&tamaño);
+    int tamano = 0;
+    TAMANO_PAN(&tamano);
 
     char tipo_pan = ' ';
     TIPO_PAN(&tipo_pan, &valor_total);
@@ -147,7 +147,7 @@ void calcular_precio_chambuchito(int* p_final){
         CALENTAR();
     }
 
-    precio_sanguche = CALCULAR_PRECIO(valor_total, tamaño);
+    precio_sanguche = CALCULAR_PRECIO(valor_total, tamano);
     printf("El valor del pedido es -%i-\n", precio_sanguche);
 
     *p_final = precio_sanguche;
