@@ -35,10 +35,10 @@ void TAMANO_PAN(int* tamano){
 
     while (*tamano > TAMANO_MAX || *tamano < TAMANO_MIN){
         if(*tamano > TAMANO_MAX){
-            printf("Te exediste un poco, el tamaNo es entre 15cm y 30cm\n");
+            printf("Te exediste un poco, el tamaño es entre 15cm y 30cm\n");
             scanf("%i", tamano); 
         }else{
-            printf("Te quedaste medio corto, el tamaNo es entre 15cm y 30cm\n");
+            printf("Te quedaste medio corto, el tamaño es entre 15cm y 30cm\n");
             scanf("%i", tamano);
         }
     }

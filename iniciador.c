@@ -72,13 +72,16 @@ void crear_mapa(juego_t* juego){
 
     for(int i = 0; i < LARGO_TABLERO; i++){
             for(int j = 0; j < LARGO_TABLERO; j++){
-                if(i == 0 || i == LARGO_TABLERO-1 || i == (LARGO_TABLERO-1)/10){
-                    juego->paredes[j].fil = i;
-                    juego->paredes[j].col = j;
-                }else if(j == 0 || j == LARGO_TABLERO){
-                    juego->paredes[j].fil = i;
-                    juego->paredes[j].col = j;
+                if(i != 10 && j != 10){
+                    if(i == 0 || i == LARGO_TABLERO-1 || i == (LARGO_TABLERO-1)/10){
+                        juego->paredes[j].fil = i;
+                        juego->paredes[j].col = j;
+                    }else if(j == 0 || j == LARGO_TABLERO){
+                        juego->paredes[j].fil = i;
+                        juego->paredes[j].col = j;
+                    }
                 }
+
             }
         }
 }
