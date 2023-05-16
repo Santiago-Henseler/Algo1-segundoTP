@@ -68,21 +68,21 @@ void iniciar_comidas(juego_t* juego, int precio){
 
 void crear_mapa(juego_t* juego){
 
-    juego->tope_paredes = LARGO_TABLERO;
-
-    int n = 0;
+    juego->tope_paredes = 0;
 
     for(int i = 0; i < LARGO_TABLERO; i++){
             for(int j = 0; j < LARGO_TABLERO; j++){
                 if(i != 10 && j != 10){
-                    if(i == 0 || i == LARGO_TABLERO-1 || i == (LARGO_TABLERO-1)/10){
-                        juego->paredes[n].fil = i;
-                        juego->paredes[n].col = j;
-                        n++;
+                    if(i == 0 || i == 20 || i == 10){
+                        juego->paredes[juego->tope_paredes].fil = i;
+                        juego->paredes[juego->tope_paredes].col = j;
+                        juego->tope_paredes++;
+                        
                     }else if(j == 0 || j == LARGO_TABLERO){
-                        juego->paredes[n].fil = i;
-                        juego->paredes[n].col = j;
-                        n++;
+                        juego->paredes[juego->tope_paredes].fil = i;
+                        juego->paredes[juego->tope_paredes].col = j;
+                        
+                        juego->tope_paredes++;
                     }
                 }
 
