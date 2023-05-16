@@ -34,9 +34,9 @@ void imprimir_terreno(juego_t juego){
     char terreno[LARGO_TABLERO][LARGO_TABLERO];
 
     // posiciones de las paredes
-    for(int i = 0; i < juego.tope_paredes; i++){
+    for(int i = 0; i < LARGO_TABLERO; i++){
 
-        for(int j = 0; j< juego.tope_paredes; j++){
+        for(int j = 0; j< LARGO_TABLERO; j++){
 
             if(i == 0 || i == 20 || i == 10){       
                 terreno[i][j] = PARED;
@@ -85,8 +85,8 @@ void imprimir_terreno(juego_t juego){
     terreno[juego.reuben.posicion.fil][juego.reuben.posicion.col] = RUBEN; 
  
     // visualizamos por pantalla la matriz terreno
-    for(int i = 0; i < juego.tope_paredes; i++){
-        for(int j = 0; j< juego.tope_paredes; j++){
+    for(int i = 0; i < LARGO_TABLERO; i++){
+        for(int j = 0; j< LARGO_TABLERO; j++){
             printf(" %c", terreno[i][j]);
         }printf("\n");
     }
