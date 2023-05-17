@@ -16,9 +16,10 @@ int main(){
 
     inicializar_juego(&juego, precio);
 
-    imprimir_terreno(juego);
 
     while(estado_juego(juego) == 0){
+
+        imprimir_terreno(juego);
 
         printf("realiza movimento");
         scanf(" %c", &movimiento);

@@ -166,8 +166,5 @@ void iniciar_fuego_matafuego(juego_t* juego){
             establecer_posicion_fuego_matafuego(juego, posicion, &juego->herramientas[i]);
         }
     }
-
-
-    
 }
 
