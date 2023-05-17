@@ -20,8 +20,10 @@ int main(){
 
     while(estado_juego(juego) == 0){
 
+        imprimir_terreno(juego);
         printf("realiza movimento");
         scanf(" %c", &movimiento);
+        
         realizar_jugada(&juego, movimiento);
     }
     
