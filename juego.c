@@ -15,8 +15,6 @@ int main(){
     calcular_precio_chambuchito(&precio);
 
     inicializar_juego(&juego, precio);
-    
-    imprimir_terreno(juego);
 
     while(estado_juego(juego) == 0){
 

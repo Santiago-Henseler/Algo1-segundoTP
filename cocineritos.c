@@ -133,7 +133,7 @@ void realizar_jugada(juego_t* juego, char movimiento){
         nueva_comida(juego);
     }
     
-    imprimir_terreno(*juego);
+   
 }
 
 int estado_juego(juego_t juego){
