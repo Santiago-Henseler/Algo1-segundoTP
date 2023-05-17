@@ -35,4 +35,8 @@ void establecer_posicion_salida(juego_t* juego);
 //POST: Revisa si se puede ubicar el fuego y el matafuegos y los posiciona
 void establecer_posicion_fuego_matafuego(juego_t* juego, int posicion, objeto_t* tipo);
 
+//PRE:-
+//POST: Devuelve true si no hay otro objeto en esa posicion
+bool esta_libre(juego_t juego, int fil, int col, bool inicio);
+
 #endif /*__ESTABLECER_POSICIONES_H__ */

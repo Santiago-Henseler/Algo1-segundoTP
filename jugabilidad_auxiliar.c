@@ -99,7 +99,7 @@ bool ya_entregado(juego_t juego, char comida){
 bool termino_comida(juego_t juego){
     bool rta = false;
 
-    for(int i = 0; i< juego.tope_comida; i++){
+    for(int i = 0; i < juego.tope_comida; i++){
         
         if(juego.comida_actual == juego.comida[i].tipo){
             if(juego.comida[i].tope_ingredientes == juego.tope_comida_lista){
@@ -123,6 +123,12 @@ bool puede_avanzar(int fil, int col, juego_t juego){
             rta = false;
         }
     }
+    for(int i = 0; i < juego.tope_obstaculos; i++){
+        if(juego.obstaculos[i].tipo == FUEGO && distancia_manhattan(fil, col, juego.obstaculos[i].posicion.fil, juego.obstaculos[i].posicion.col) == 0){
+            rta = false;
+        }
+    }
+
 
     return rta;
 }

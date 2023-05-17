@@ -101,9 +101,9 @@ void realizar_jugada(juego_t* juego, char movimiento){
     if(juego->personaje_activo == STICH){
         if(movimiento == CAMBIO_PERSONAJE){
             juego->personaje_activo = RUBEN;
-        }else if(movimiento == CORTAR && juego->movimientos <= MOVIMIENTOS_FUEGO){
+        }else if(movimiento == CORTAR && juego->movimientos < MOVIMIENTOS_FUEGO){
             usar_herramienta(juego->stitch, juego);
-        }else if(movimiento == INTERACTUAR_MESA && juego->movimientos <= MOVIMIENTOS_FUEGO){
+        }else if(movimiento == INTERACTUAR_MESA && juego->movimientos < MOVIMIENTOS_FUEGO){
             pasar_por_la_mesa(&juego->stitch, juego);
         }else if(movimiento == USAR_MATAFUEGO && juego->movimientos >= MOVIMIENTOS_FUEGO){
             apagar_fuego(&juego->stitch, juego);
