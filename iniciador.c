@@ -143,7 +143,7 @@ void iniciar_fuego_matafuego(juego_t* juego){
     juego->obstaculos[juego->tope_obstaculos].tipo = FUEGO;
     juego->tope_obstaculos++;
 
-    juego->herramientas[4].tipo = MATAFUEGO;
+    juego->herramientas[juego->tope_herramientas].tipo = MATAFUEGO;
     juego->tope_herramientas++;
 
     int posicion = rand() % 19 + 1;

@@ -15,7 +15,7 @@ bool no_tiene_objeto_en_mano(personaje_t personaje);
 
 //PRE:-
 //POST: Revisa si la mesa esta ocupada y devuelve false si lo esta
-bool mesa_vacia(int fil, int col);
+bool mesa_vacia(juego_t);
 
 //PRE:-
 //POST: Revisa si el ingrediente esta preparado y devuelve true si lo esta

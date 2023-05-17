@@ -42,12 +42,16 @@ void movimiento_personaje(personaje_t* personaje, char movimiento, juego_t* jueg
 
     if(movimiento == DERECHA && puede_avanzar(personaje->posicion.fil, personaje->posicion.col + 1, *juego)){
         personaje->posicion.col += 1;
+        juego->movimientos += 1;
     }else if(movimiento == IZQUIERDA && puede_avanzar(personaje->posicion.fil, personaje->posicion.col - 1, *juego)){
         personaje->posicion.col -= 1;
+        juego->movimientos += 1;
     }else if(movimiento == ARRIBA && puede_avanzar(personaje->posicion.fil -1, personaje->posicion.col, *juego)){
         personaje->posicion.fil -= 1;
+        juego->movimientos += 1;
     }else if(movimiento == ABAJO && puede_avanzar(personaje->posicion.fil +1, personaje->posicion.col, *juego)){
         personaje->posicion.fil += 1;
+        juego->movimientos += 1;
     }
 
     
@@ -93,21 +97,16 @@ void pasar_por_la_mesa(personaje_t* personaje, juego_t* juego){
             if(juego->comida_actual == juego->comida[i].tipo){ 
                 
                 for(int j = 0; j < juego->comida[i].tope_ingredientes; j++){
-                    int fil = juego->comida[i].ingrediente[j].posicion.fil;
-                    int col = juego->comida[i].ingrediente[j].posicion.col;
-
-                    if(personaje->tipo == STICH){
-                        if (personaje->objeto_en_mano == juego->comida[i].ingrediente[j].tipo && mesa_vacia(fil, col) && juego->comida[i].ingrediente[j].esta_cortado){
-                            juego->comida[i].ingrediente[j].posicion.col = POSICION_MESA;
-                            juego->comida[i].ingrediente[j].posicion.fil = POSICION_MESA;
-                            personaje->objeto_en_mano = SIN_OBJETO_EN_MANO;
-                            j = juego->comida[i].tope_ingredientes;
-                        }
-                    }else{
-                        if(personaje->objeto_en_mano == SIN_OBJETO_EN_MANO  && !mesa_vacia(fil, col)){
-                            personaje->objeto_en_mano = juego->comida[i].ingrediente[j].tipo;
-                            j = juego->comida[i].tope_ingredientes;
-                        }
+                    
+                    if (personaje->objeto_en_mano == juego->comida[i].ingrediente[j].tipo && mesa_vacia(*juego)){
+                        personaje->objeto_en_mano = SIN_OBJETO_EN_MANO;
+                        juego->comida[i].ingrediente[j].posicion.col = POSICION_MESA;
+                        juego->comida[i].ingrediente[j].posicion.fil = POSICION_MESA; 
+                        j = juego->comida[i].tope_ingredientes;
+                    }
+                    if(personaje->objeto_en_mano == SIN_OBJETO_EN_MANO  && !mesa_vacia(*juego)){
+                        personaje->objeto_en_mano = juego->comida[i].ingrediente[j].tipo;
+                        j = juego->comida[i].tope_ingredientes;
                     }
                 }
             i = juego->tope_comida;

@@ -5,9 +5,30 @@ bool no_tiene_objeto_en_mano(personaje_t personaje){
     return personaje.objeto_en_mano == SIN_OBJETO_EN_MANO;
 }
 
-bool mesa_vacia(int fil, int col){
+bool mesa_vacia(juego_t juego){
 
-    return distancia_manhattan(POSICION_MESA, POSICION_MESA, fil,col) != 0;
+    bool rta = true;
+
+    int fil = 0;
+    int col = 0;
+
+    for(int i = 0; i < juego.tope_comida; i++){
+        if(juego.comida_actual == juego.comida[i].tipo){ 
+                
+            for(int j = 0; j < juego.comida[i].tope_ingredientes; j++){
+                fil = juego.comida[i].ingrediente[j].posicion.fil;
+                col = juego.comida[i].ingrediente[j].posicion.col;
+
+                if(distancia_manhattan(POSICION_MESA, POSICION_MESA, fil,col) == 0){
+                    rta = false;
+                    j = juego.comida[i].tope_ingredientes;
+                }
+            }
+        i = juego.tope_comida;
+        }
+    }
+
+    return rta;
 }
 
 bool esta_listo(int i, comida_t comida){

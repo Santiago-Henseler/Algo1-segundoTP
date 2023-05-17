@@ -6,19 +6,20 @@
 
 int main(){
 
-    int precio = 0;
+    int precio = 300;
     char movimiento = ' ';
     
     juego_t juego;
     srand((unsigned)time(NULL));
 
-    calcular_precio_chambuchito(&precio);
+   // calcular_precio_chambuchito(&precio);
 
     inicializar_juego(&juego, precio);
 
+    imprimir_terreno(juego);
+
     while(estado_juego(juego) == 0){
 
-        imprimir_terreno(juego);
         printf("realiza movimento");
         scanf(" %c", &movimiento);
         

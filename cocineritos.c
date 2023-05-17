@@ -98,16 +98,14 @@ void realizar_jugada(juego_t* juego, char movimiento){
         iniciar_fuego_matafuego(juego);
     }
    
-    juego->movimientos += 1;
-
     if(juego->personaje_activo == STICH){
         if(movimiento == CAMBIO_PERSONAJE){
             juego->personaje_activo = RUBEN;
-        }else if(movimiento == CORTAR && juego->movimientos < 15){
+        }else if(movimiento == CORTAR && juego->movimientos <= MOVIMIENTOS_FUEGO){
             usar_herramienta(juego->stitch, juego);
-        }else if(movimiento == INTERACTUAR_MESA && juego->movimientos < 15){
+        }else if(movimiento == INTERACTUAR_MESA && juego->movimientos <= MOVIMIENTOS_FUEGO){
             pasar_por_la_mesa(&juego->stitch, juego);
-        }else if(movimiento == USAR_MATAFUEGO && juego->movimientos >= 15){
+        }else if(movimiento == USAR_MATAFUEGO && juego->movimientos >= MOVIMIENTOS_FUEGO){
             apagar_fuego(&juego->stitch, juego);
         }else{
             movimiento_personaje(&juego->stitch, movimiento, juego);
@@ -116,13 +114,13 @@ void realizar_jugada(juego_t* juego, char movimiento){
     else if(juego->personaje_activo == RUBEN){
         if(movimiento == CAMBIO_PERSONAJE){
             juego->personaje_activo = STICH;
-        }else if(movimiento == COCINAR && juego->movimientos < 15){
+        }else if(movimiento == COCINAR && juego->movimientos < MOVIMIENTOS_FUEGO){
             usar_herramienta(juego->reuben, juego);
-        }else if(movimiento == INTERACTUAR_MESA && juego->movimientos < 15){
+        }else if(movimiento == INTERACTUAR_MESA && juego->movimientos < MOVIMIENTOS_FUEGO){
             pasar_por_la_mesa(&juego->reuben, juego);
-        }else if(movimiento == DEJAR_EN_SALIDA && juego->movimientos < 15){
+        }else if(movimiento == DEJAR_EN_SALIDA && juego->movimientos < MOVIMIENTOS_FUEGO){
             dejar_en_la_salida(&juego->reuben, juego);
-        }else if(movimiento == USAR_MATAFUEGO){
+        }else if(movimiento == USAR_MATAFUEGO && juego->movimientos >= MOVIMIENTOS_FUEGO){
             apagar_fuego(&juego->reuben, juego);
         }else{
             movimiento_personaje(&juego->reuben, movimiento, juego);
@@ -133,7 +131,7 @@ void realizar_jugada(juego_t* juego, char movimiento){
         nueva_comida(juego);
     }
     
-   
+    imprimir_terreno(*juego);
 }
 
 int estado_juego(juego_t juego){
