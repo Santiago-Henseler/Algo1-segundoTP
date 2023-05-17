@@ -160,7 +160,14 @@ void iniciar_fuego_matafuego(juego_t* juego){
             establecer_posicion_fuego_matafuego(juego, posicion, &juego->obstaculos[i]);
         }
     }
+    for(int i = 0; i < juego->tope_herramientas; i++){
+        if(juego->herramientas[i].tipo == MATAFUEGO){
+            
+            establecer_posicion_fuego_matafuego(juego, posicion, &juego->herramientas[i]);
+        }
+    }
 
-    establecer_posicion_fuego_matafuego(juego, posicion, &juego->herramientas[4]);
+
+    
 }
 
