@@ -13,15 +13,16 @@ void inicializar_juego(juego_t* juego, int precio){
     juego->mesa.col = POSICION_MESA;
     juego->mesa.fil = POSICION_MESA;
 
+    juego->comida_actual = ENSALADA;
+    juego->tope_comida_lista = 0;
+
     crear_mapa(juego);
     iniciar_obstaculos(juego);
     iniciar_objetos(juego);
     iniciar_comidas(juego, precio);
     iniciar_personaje(juego);
     iniciar_salida(juego);
-  
-    juego->comida_actual = juego->comida[0].tipo;
-    juego->tope_comida_lista = 0;
+
 }
 
 void imprimir_terreno(juego_t juego){

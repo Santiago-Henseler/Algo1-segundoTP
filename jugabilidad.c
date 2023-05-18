@@ -1,6 +1,9 @@
 #include "jugabilidad.h"
 #include "jugabilidad_auxiliar.h"
 
+char comidas[MAX_COMIDA] = {ENSALADA,PIZZA, HAMBURGESA, SANGUCHE};
+int tope_comidas = 4;
+
 void agarrar_soltar_alimentos(personaje_t* personaje, juego_t* juego){
 
     for(int i = 0; i < juego->tope_comida; i++){
@@ -139,11 +142,11 @@ void dejar_en_la_salida(personaje_t* personaje, juego_t* juego){
 
 void nueva_comida(juego_t* juego){
 
-    for(int i = 0; i < juego->tope_comida; i++){
+    for(int i = 0; i < tope_comidas; i++){
 
         if(juego->comida_actual == juego->comida[i].tipo){ 
                 
-            juego->comida_actual = juego->comida[i+1].tipo;
+            juego->comida_actual = comidas[i+1];
             juego->tope_comida_lista = 0;
             i = juego->tope_comida;
         }

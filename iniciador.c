@@ -16,49 +16,72 @@ void iniciar_comidas(juego_t* juego, int precio){
         juego->tope_comida = 0;
 
         // Inicializo la ensalada
-        juego->comida[0].tipo = ENSALADA;
-        juego->comida[0].ingrediente[0].tipo = LECHUGA;
-        juego->comida[0].ingrediente[1].tipo = TOMATE;
-        juego->comida[0].tope_ingredientes = 2;
-        juego->tope_comida++;
+        if(juego->comida_actual == ENSALADA){
+            juego->comida[juego->tope_comida].tipo = ENSALADA;
 
-        establecer_posicion_ingredientes(&juego->comida[0], *juego);
-       
-        // Inicializo la pizza
-        juego->comida[1].tipo = PIZZA;
-        juego->comida[1].ingrediente[0].tipo = MASA;
-        juego->comida[1].ingrediente[1].tipo = JAMON;
-        juego->comida[1].ingrediente[2].tipo = QUESO;
-        juego->comida[1].tope_ingredientes = 3;
-        juego->tope_comida++;
-        
-        establecer_posicion_ingredientes(&juego->comida[1], *juego);
-        
-    if(precio > SEGUNDO_MENU){
+            juego->comida[juego->tope_comida].tope_ingredientes = 0;
+            juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = LECHUGA;
+            juego->comida[juego->tope_comida].tope_ingredientes++;
+            juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = TOMATE;
+            juego->comida[juego->tope_comida].tope_ingredientes++;
+
+            establecer_posicion_ingredientes(&juego->comida[juego->tope_comida], *juego);
+            juego->tope_comida++;
+        }else if(juego->comida_actual == PIZZA){    // Inicializo la pizza
+            juego->comida[juego->tope_comida].tipo = PIZZA;
+
+            juego->comida[juego->tope_comida].tope_ingredientes = 0;
+            juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = MASA;
+            juego->comida[juego->tope_comida].tope_ingredientes++;
+            juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = JAMON;
+            juego->comida[juego->tope_comida].tope_ingredientes++;
+            juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = QUESO;
+            juego->comida[juego->tope_comida].tope_ingredientes++;
+
+            establecer_posicion_ingredientes(&juego->comida[juego->tope_comida], *juego);
+
+            juego->tope_comida++;
+        }
+
+ 
+    if(precio > SEGUNDO_MENU && juego->comida_actual == HAMBURGESA){
         // Inicializo Hamburgesa
         juego->comida[2].tipo = HAMBURGESA;
-        juego->comida[2].ingrediente[0].tipo = LECHUGA;
-        juego->comida[2].ingrediente[1].tipo = TOMATE;
-        juego->comida[2].ingrediente[2].tipo = CARNE;
-        juego->comida[2].ingrediente[3].tipo = PAN;
-        juego->comida[2].tope_ingredientes = 4;
-        juego->tope_comida++;
 
-        establecer_posicion_ingredientes(&juego->comida[2], *juego);
+        juego->comida[juego->tope_comida].tope_ingredientes = 0;
+        juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = LECHUGA;
+        juego->comida[juego->tope_comida].tope_ingredientes++;
+        juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = TOMATE;
+        juego->comida[juego->tope_comida].tope_ingredientes++;
+        juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = CARNE;
+        juego->comida[juego->tope_comida].tope_ingredientes++;
+        juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = PAN;
+        juego->comida[juego->tope_comida].tope_ingredientes++;
+
+        establecer_posicion_ingredientes(&juego->comida[juego->tope_comida], *juego);
+        juego->tope_comida++;
     }
 
     if(precio > TERCER_MENU){
         // Inicializo sanguche
-        juego->comida[3].tipo = SANGUCHE;
-        juego->comida[3].ingrediente[0].tipo = LECHUGA;
-        juego->comida[3].ingrediente[1].tipo = TOMATE;
-        juego->comida[3].ingrediente[2].tipo = QUESO;
-        juego->comida[3].ingrediente[3].tipo = PAN;
-        juego->comida[3].ingrediente[4].tipo = JAMON;
-        juego->comida[3].ingrediente[5].tipo = MILANESA;
+        juego->comida[juego->tope_comida].tipo = SANGUCHE;
 
-        juego->comida[3].tope_ingredientes = 6;
-        establecer_posicion_ingredientes(&juego->comida[3], *juego);
+        juego->comida[juego->tope_comida].tope_ingredientes = 0;
+        juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = LECHUGA;
+        juego->comida[juego->tope_comida].tope_ingredientes++;
+        juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = TOMATE;
+        juego->comida[juego->tope_comida].tope_ingredientes++;
+        juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = QUESO;
+        juego->comida[juego->tope_comida].tope_ingredientes++;
+        juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = PAN;
+        juego->comida[juego->tope_comida].tope_ingredientes++;
+        juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = JAMON;
+        juego->comida[juego->tope_comida].tope_ingredientes++;
+        juego->comida[juego->tope_comida].ingrediente[juego->comida[juego->tope_comida].tope_ingredientes].tipo = MILANESA;
+        juego->comida[juego->tope_comida].tope_ingredientes++;
+
+
+        establecer_posicion_ingredientes(&juego->comida[juego->tope_comida], *juego);
 
         juego->tope_comida++;
     }
@@ -90,23 +113,23 @@ void iniciar_objetos(juego_t* juego){
     
     juego->tope_herramientas = 0;
 
-    juego->herramientas[0].tipo = CUCHILLO;
-    establecer_posicion_objetos(&juego->herramientas[0], *juego);
+    juego->herramientas[juego->tope_herramientas].tipo = CUCHILLO;
+    establecer_posicion_objetos(&juego->herramientas[juego->tope_herramientas], *juego);
 
     juego->tope_herramientas++;
 
-    juego->herramientas[1].tipo = CUCHILLO;
-    establecer_posicion_objetos(&juego->herramientas[1], *juego);
+    juego->herramientas[juego->tope_herramientas].tipo = CUCHILLO;
+    establecer_posicion_objetos(&juego->herramientas[juego->tope_herramientas], *juego);
 
     juego->tope_herramientas++;
 
-    juego->herramientas[2].tipo = HORNO;
-    establecer_posicion_objetos(&juego->herramientas[2], *juego);
+    juego->herramientas[juego->tope_herramientas].tipo = HORNO;
+    establecer_posicion_objetos(&juego->herramientas[juego->tope_herramientas], *juego);
 
     juego->tope_herramientas++;
 
-    juego->herramientas[3].tipo = HORNO;
-    establecer_posicion_objetos(&juego->herramientas[3], *juego);
+    juego->herramientas[juego->tope_herramientas].tipo = HORNO;
+    establecer_posicion_objetos(&juego->herramientas[juego->tope_herramientas], *juego);
 
     juego->tope_herramientas++;
 }
