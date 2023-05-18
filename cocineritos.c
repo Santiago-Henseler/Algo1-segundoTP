@@ -95,18 +95,18 @@ void imprimir_terreno(juego_t juego){
 
 void realizar_jugada(juego_t* juego, char movimiento){
    
-    if(juego->movimientos == MOVIMIENTOS_FUEGO){
+    if(juego->movimientos == MOVIMIENTOS_FUEGO && !fuego_activo(*juego)){
         iniciar_fuego_matafuego(juego);
     }
    
     if(juego->personaje_activo == STICH){
         if(movimiento == CAMBIO_PERSONAJE){
             juego->personaje_activo = RUBEN;
-        }else if(movimiento == CORTAR && juego->movimientos < MOVIMIENTOS_FUEGO){
+        }else if(movimiento == CORTAR && !fuego_activo(*juego)){
             usar_herramienta(juego->stitch, juego);
-        }else if(movimiento == INTERACTUAR_MESA && juego->movimientos < MOVIMIENTOS_FUEGO){
+        }else if(movimiento == INTERACTUAR_MESA && !fuego_activo(*juego)){
             pasar_por_la_mesa(&juego->stitch, juego);
-        }else if(movimiento == USAR_MATAFUEGO && juego->movimientos >= MOVIMIENTOS_FUEGO){
+        }else if(movimiento == USAR_MATAFUEGO && fuego_activo(*juego)){
             apagar_fuego(&juego->stitch, juego);
         }else{
             movimiento_personaje(&juego->stitch, movimiento, juego);
@@ -115,13 +115,11 @@ void realizar_jugada(juego_t* juego, char movimiento){
     else if(juego->personaje_activo == RUBEN){
         if(movimiento == CAMBIO_PERSONAJE){
             juego->personaje_activo = STICH;
-        }else if(movimiento == COCINAR && juego->movimientos < MOVIMIENTOS_FUEGO){
+        }else if(movimiento == COCINAR && !fuego_activo(*juego)){
             usar_herramienta(juego->reuben, juego);
-        }else if(movimiento == INTERACTUAR_MESA && juego->movimientos < MOVIMIENTOS_FUEGO){
+        }else if(movimiento == INTERACTUAR_MESA && !fuego_activo(*juego)){
             pasar_por_la_mesa(&juego->reuben, juego);
-        }else if(movimiento == DEJAR_EN_SALIDA && juego->movimientos < MOVIMIENTOS_FUEGO){
-            dejar_en_la_salida(&juego->reuben, juego);
-        }else if(movimiento == USAR_MATAFUEGO && juego->movimientos >= MOVIMIENTOS_FUEGO){
+        }else if(movimiento == USAR_MATAFUEGO && fuego_activo(*juego)){
             apagar_fuego(&juego->reuben, juego);
         }else{
             movimiento_personaje(&juego->reuben, movimiento, juego);

@@ -133,6 +133,19 @@ bool puede_avanzar(int fil, int col, juego_t juego){
     return rta;
 }
 
+bool fuego_activo(juego_t juego){
+    bool rta = false;
+    
+    for(int i = 0; i < juego.tope_obstaculos; i++){
+
+        if(juego.obstaculos[i].tipo == FUEGO){ 
+            rta = true;
+            i = juego.tope_obstaculos;
+        }
+    }
+    return rta;
+}
+
 void hud(juego_t juego){
 
     char objeto = SIN_OBJETO_EN_MANO;

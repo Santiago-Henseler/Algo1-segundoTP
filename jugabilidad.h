@@ -18,7 +18,6 @@
 #define CORTAR 'C'
 #define COCINAR 'H'
 #define INTERACTUAR_MESA 'T'
-#define DEJAR_EN_SALIDA 'P'
 #define USAR_MATAFUEGO 'M'
 
 //PRE:-

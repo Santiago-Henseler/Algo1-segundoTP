@@ -57,6 +57,7 @@ void movimiento_personaje(personaje_t* personaje, char movimiento, juego_t* jueg
         juego->movimientos += 1;
     }
 
+    dejar_en_la_salida(&juego->reuben, juego);
     
     if(juego->movimientos > MOVIMIENTOS_FUEGO){
         agarrar_matafuego(personaje,  juego);
