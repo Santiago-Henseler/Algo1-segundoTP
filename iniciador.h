@@ -47,7 +47,7 @@
 
 //PRE: -
 //POST: Carga las paredes del mapa
-void crear_mapa(juego_t* juego);
+void crear_mapa(coordenada_t paredes[MAX_PAREDES], int* tope_paredes);
 
 //PRE: -
 //POST: Carga los 20 agujeros del juego

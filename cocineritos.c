@@ -3,10 +3,12 @@
 #include "jugabilidad_auxiliar.h"
 #include "iniciador.h"
 #include "establecer_posiciones.h"
+#include "funciones_auxiliares.h"
 
 void inicializar_juego(juego_t* juego, int precio){
 
     juego->personaje_activo = STICH;
+    juego->movimientos = 0;
 
     juego->precio_total = precio;
 
@@ -17,7 +19,7 @@ void inicializar_juego(juego_t* juego, int precio){
     juego->tope_comida = 0;
     juego->tope_comida_lista = 0;
 
-    crear_mapa(juego);
+    crear_mapa(juego->paredes, &juego->tope_paredes);
     iniciar_obstaculos(juego);
     iniciar_objetos(juego);
     iniciar_comidas(juego, precio);
@@ -35,57 +37,8 @@ void imprimir_terreno(juego_t juego){
 
     char terreno[LARGO_TABLERO][LARGO_TABLERO];
 
-    // posiciones de las paredes
-    for(int i = 0; i < LARGO_TABLERO; i++){
+    cargar_terreno(juego, terreno);
 
-        for(int j = 0; j< LARGO_TABLERO; j++){
-
-            if(i == 0 || i == 20 || i == 10){       
-                terreno[i][j] = PARED;
-            }else if(j == 0 || j == 20){
-                terreno[i][j] = PARED;
-            }else{
-                terreno[i][j] = ' ';
-            }
-        }
-    }
-    
-    // posiciones de la mesa y de la salida
-    terreno[juego.salida.fil][juego.salida.col] = SALIDAD;
-    terreno[juego.mesa.fil][juego.mesa.col] = MESA;
-
-    // posiciones de los obstaculos
-    for(int i = 0; i < juego.tope_obstaculos; i++){
-        terreno[juego.obstaculos[i].posicion.fil][juego.obstaculos[i].posicion.col] = juego.obstaculos[i].tipo;
-    }
-
-    // posiciones de los ingredientes
-    for(int i = 0; i < juego.tope_comida; i++){
-        
-         if(juego.comida_actual == juego.comida[i].tipo){ 
-            
-            for(int j = 0; j < juego.comida[i].tope_ingredientes; j++){
-                
-                if(!ya_entregado(juego, juego.comida[i].ingrediente[j].tipo) && juego.reuben.objeto_en_mano != juego.comida[i].ingrediente[j].tipo && juego.stitch.objeto_en_mano != juego.comida[i].ingrediente[j].tipo){
-                    terreno[juego.comida[i].ingrediente[j].posicion.fil][juego.comida[i].ingrediente[j].posicion.col] = juego.comida[i].ingrediente[j].tipo;
-                }
-            }
-           
-        }
- 
-    }
-   
-   // posiciones de las herramientas
-    for(int i = 0; i < juego.tope_herramientas; i++){
-        if(juego.reuben.objeto_en_mano != juego.herramientas[i].tipo && juego.stitch.objeto_en_mano != juego.herramientas[i].tipo){
-            terreno[juego.herramientas[i].posicion.fil][juego.herramientas[i].posicion.col] = juego.herramientas[i].tipo; 
-        }
-    }
-
-    // posiciones de los personajes
-    terreno[juego.stitch.posicion.fil][juego.stitch.posicion.col] = STICH; 
-    terreno[juego.reuben.posicion.fil][juego.reuben.posicion.col] = RUBEN; 
- 
     // visualizamos por pantalla la matriz terreno
     for(int i = 0; i < LARGO_TABLERO; i++){
         for(int j = 0; j< LARGO_TABLERO; j++){
@@ -129,6 +82,7 @@ void realizar_jugada(juego_t* juego, char movimiento){
     
     if(termino_comida(*juego)){
         nueva_comida(juego);
+        iniciar_comidas(juego, juego->precio_total);
     }
 
 }

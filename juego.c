@@ -3,6 +3,7 @@
 #include <time.h>
 #include "chambuchito.h"
 #include "cocineritos.h"
+#include "funciones_auxiliares.h"
 
 int main(){
 
@@ -16,15 +17,19 @@ int main(){
 
     inicializar_juego(&juego, precio);
 
-
     while(estado_juego(juego) == 0){
 
         imprimir_terreno(juego);
 
         printf("realiza movimento");
         scanf(" %c", &movimiento);
+
+        if(movimiento_valido(movimiento)){
+            realizar_jugada(&juego, movimiento);
+        }else{
+            printf("Movimiento invalido!");
+        }
         
-        realizar_jugada(&juego, movimiento);
     }
     
     if(estado_juego(juego) == 1){

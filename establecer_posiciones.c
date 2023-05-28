@@ -1,4 +1,5 @@
 #include "establecer_posiciones.h"
+#include "funciones_auxiliares.h"
 
 bool esta_libre(juego_t juego, int fil, int col, bool inicio){
     bool rta = true;
@@ -48,113 +49,105 @@ bool ingrediente_de_ruben(int i, comida_t comida){
 void establecer_posicion_ingredientes(comida_t* comida, juego_t juego){
 
     for(int i = 0; i < comida->tope_ingredientes; i++){
-        bool c = true;
+        bool posicionado = false;
 
-        while (c){
+        while (!posicionado){
             int col = 0;
             int fil = 0;
                 
             if(ingrediente_de_ruben(i, *comida)){
-                fil = rand() % 9 + 11;
-                col = rand() % 19 + 1;
+                posicion_random( &col, &fil, 2);
             }else{
-                col = rand() % 19 + 1;
-                fil = rand() % 9 + 1;
+                posicion_random( &col, &fil, 1);
             }
 
             if(esta_libre(juego, fil, col, true)){
                 comida->ingrediente[i].posicion.col = col;
                 comida->ingrediente[i].posicion.fil = fil;
-                c = false;
+                posicionado = true;
             }
         }  
     }  
 }
 
 void establecer_posicion_objetos(objeto_t* objeto, juego_t juego){
-    bool c = true;
+    bool posicionado = false;
 
-    while (c){
+    while (!posicionado){
         int col = 0;
         int fil = 0;
         
         if(objeto->tipo == HORNO){
-            fil = rand() % 9 + 11;
-            col = rand() % 19 + 1;
+            posicion_random( &col, &fil, 2);
         }
         if(objeto->tipo == CUCHILLO){
-            col = rand() % 19 + 1;
-            fil = rand() % 9 + 1;
+            posicion_random( &col, &fil, 1);
         }
+ 
         if(esta_libre(juego, fil, col, true)){
             objeto->posicion.col = col;
             objeto->posicion.fil = fil;
-            c = false;
+            posicionado = true;
         }
     }
 }
 
 void establecer_posicion_agujeros(objeto_t* agujero, juego_t juego, int i){
-    bool c = true;
+    bool posicionado = false;
 
-    while (c){
+    while(!posicionado){
         int col = 0;
         int fil = 0;
         
         if(i < 10){
-            fil = rand() % 9 + 1;
-            col = rand() % 19 + 1;
+            posicion_random( &col, &fil, 1);
         }else if(i >= 10){
-            fil = rand() % 9 + 11;
-            col = rand() % 19 + 1;
+            posicion_random( &col, &fil, 2);
         }
         if(esta_libre(juego,  fil,  col, true)){
             agujero->posicion.col = col;
             agujero->posicion.fil = fil;
-            c = false;
+            posicionado = true;
         }
     }
 }
 
 void establecer_posicion_personajes(personaje_t* personaje, juego_t juego){
-    bool c = true;
+    bool posicionado = false;
 
-    while (c){
+    while (!posicionado){
         int col = 0;
         int fil = 0;
         
         if(personaje->tipo == RUBEN){
-            fil = rand() % 9 + 11;
-            col = rand() % 19 + 1;
+           posicion_random( &col, &fil, 2);
         }
 
         if(personaje->tipo == STICH){
-            col = rand() % 19 + 1;
-            fil = rand() % 9 + 1;
+            posicion_random( &col, &fil, 1);
         }
 
         if(esta_libre(juego, fil, col, true)){
             personaje->posicion.col = col;
             personaje->posicion.fil = fil;
-            c = false;
+            posicionado = true;
         }
     }
 }
 
 void establecer_posicion_salida(juego_t* juego){
-    bool c = true;
+    bool posicionado = false;
 
     int fil = 0;
     int col = 0;
 
-    while (c){
-        fil = rand() % 9 + 11;
-        col = rand() % 19 + 1;
+    while (!posicionado){
+      posicion_random( &col, &fil, 2);
         
         if(esta_libre(*juego, fil, col, true)){
             juego->salida.col = col;
             juego->salida.fil = fil;
-            c = false;
+            posicionado = true;
         }
     }
 }

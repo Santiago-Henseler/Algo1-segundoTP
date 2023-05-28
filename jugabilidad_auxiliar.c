@@ -157,4 +157,5 @@ void hud(juego_t juego){
     }
 
     printf("Personaje activo: %c Objeto activo: %c\n", juego.personaje_activo, objeto);
+    
 }

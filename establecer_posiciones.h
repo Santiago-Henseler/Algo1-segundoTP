@@ -5,6 +5,7 @@
 #include "iniciador.h"
 #include "jugabilidad.h"
 #include "jugabilidad_auxiliar.h"
+#include "funciones_auxiliares.h"
 #include <stdlib.h>
 
 //PRE: -

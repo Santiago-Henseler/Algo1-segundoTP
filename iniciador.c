@@ -87,21 +87,21 @@ void iniciar_comidas(juego_t* juego, int precio){
     iniciar_estado_comida(juego);
 }
 
-void crear_mapa(juego_t* juego){
+void crear_mapa(coordenada_t paredes[MAX_PAREDES], int* tope_paredes){
 
-    juego->tope_paredes = 0;
+    *tope_paredes = 0;
 
     for(int i = 0; i < LARGO_TABLERO; i++){
             for(int j = 0; j <= LARGO_TABLERO; j++){
                     if(i == 0 || i == 20 || i == 10){
-                        juego->paredes[juego->tope_paredes].fil = i;
-                        juego->paredes[juego->tope_paredes].col = j;
-                        juego->tope_paredes++;
+                        paredes[*tope_paredes].fil = i;
+                        paredes[*tope_paredes].col = j;
+                        (*tope_paredes)++;
                         
                     }else if(j == 0 || j == LARGO_TABLERO){
-                        juego->paredes[juego->tope_paredes].fil = i;
-                        juego->paredes[juego->tope_paredes].col = j;
-                        juego->tope_paredes++;
+                        paredes[*tope_paredes].fil = i;
+                        paredes[*tope_paredes].col = j;
+                        (*tope_paredes)++;
                     }
             }
         }
@@ -175,17 +175,9 @@ void iniciar_fuego_matafuego(juego_t* juego){
         posicion = 1;
     }
 
-    for(int i = 0; i < juego->tope_obstaculos; i++){
-        if(juego->obstaculos[i].tipo == FUEGO){
-            
-            establecer_posicion_fuego_matafuego(juego, posicion, &juego->obstaculos[i]);
-        }
-    }
-    for(int i = 0; i < juego->tope_herramientas; i++){
-        if(juego->herramientas[i].tipo == MATAFUEGO){
-            
-            establecer_posicion_fuego_matafuego(juego, posicion, &juego->herramientas[i]);
-        }
-    }
+    establecer_posicion_fuego_matafuego(juego, posicion, &juego->obstaculos[juego->tope_obstaculos-1]);
+        
+    establecer_posicion_fuego_matafuego(juego, posicion, &juego->herramientas[juego->tope_herramientas-1]);
+ 
 }
 
