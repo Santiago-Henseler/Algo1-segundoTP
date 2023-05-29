@@ -102,11 +102,11 @@ int estado_juego(juego_t juego){
     // revisa si ganaste el juego
     for(int i = 0; i < juego.tope_comida; i++){
 
-        if(juego.precio_total >= SEGUNDO_MENU && juego.precio_total < TERCER_MENU && juego.comida_actual == HAMBURGESA && termino_comida(juego)){ 
+        if(juego.precio_total > SEGUNDO_MENU && juego.precio_total <= TERCER_MENU && juego.comida_actual == HAMBURGESA && termino_comida(juego)){ 
            estado = 1;
         }else if(juego.precio_total <= SEGUNDO_MENU && juego.comida_actual == PIZZA && termino_comida(juego)){ 
            estado = 1;
-        }else if(juego.precio_total <= TERCER_MENU && juego.comida_actual == SANGUCHE && termino_comida(juego)){ 
+        }else if(juego.precio_total >= TERCER_MENU && juego.comida_actual == SANGUCHE && termino_comida(juego)){ 
            estado = 1;
         }
     }
