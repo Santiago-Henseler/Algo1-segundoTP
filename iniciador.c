@@ -93,6 +93,7 @@ void crear_mapa(coordenada_t paredes[MAX_PAREDES], int* tope_paredes){
 
     for(int i = 0; i < LARGO_TABLERO; i++){
             for(int j = 0; j <= LARGO_TABLERO; j++){
+                if(j != 10 && i != 10){
                     if(i == 0 || i == 20 || i == 10){
                         paredes[*tope_paredes].fil = i;
                         paredes[*tope_paredes].col = j;
@@ -103,6 +104,7 @@ void crear_mapa(coordenada_t paredes[MAX_PAREDES], int* tope_paredes){
                         paredes[*tope_paredes].col = j;
                         (*tope_paredes)++;
                     }
+                }
             }
         }
 }
