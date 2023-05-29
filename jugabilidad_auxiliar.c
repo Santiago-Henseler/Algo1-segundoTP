@@ -7,28 +7,33 @@ bool no_tiene_objeto_en_mano(personaje_t personaje){
 
 bool mesa_vacia(juego_t juego){
 
-    bool rta = true;
-
     int fil = 0;
     int col = 0;
 
-    for(int i = 0; i < juego.tope_comida; i++){
+    int i = 0;
+    int j = 0;
+
+    bool encontrado = false;
+    bool vacia = true;
+
+    while (i < juego.tope_comida  && !encontrado){
         if(juego.comida_actual == juego.comida[i].tipo){ 
                 
-            for(int j = 0; j < juego.comida[i].tope_ingredientes; j++){
+            while (j < juego.comida[i].tope_ingredientes && vacia){
                 fil = juego.comida[i].ingrediente[j].posicion.fil;
                 col = juego.comida[i].ingrediente[j].posicion.col;
 
                 if(distancia_manhattan(POSICION_MESA, POSICION_MESA, fil,col) == 0){
-                    rta = false;
-                    j = juego.comida[i].tope_ingredientes;
+                    vacia = false;
                 }
+                j++;
             }
-        i = juego.tope_comida;
         }
+        encontrado = true;
+        i++;
     }
-
-    return rta;
+    
+    return vacia;
 }
 
 bool esta_listo(int i, comida_t comida){
@@ -134,16 +139,18 @@ bool puede_avanzar(int fil, int col, juego_t juego){
 }
 
 bool fuego_activo(juego_t juego){
-    bool rta = false;
-    
-    for(int i = 0; i < juego.tope_obstaculos; i++){
 
+    bool activo = false;
+    int i = 0;
+
+    while (i < juego.tope_obstaculos && !activo){
         if(juego.obstaculos[i].tipo == FUEGO){ 
-            rta = true;
-            i = juego.tope_obstaculos;
+            activo = true;
         }
+        i++;
     }
-    return rta;
+    
+    return activo;
 }
 
 void hud(juego_t juego){

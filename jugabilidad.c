@@ -3,24 +3,29 @@
 
 void agarrar_soltar_alimentos(personaje_t* personaje, juego_t* juego){
 
-    for(int i = 0; i < juego->tope_comida; i++){
+    int i = 0;
+    int j = 0;
 
+    bool encotrado = false;
+    bool accion = false;
+
+    while ( i < juego->tope_comida && !encotrado){
         if(juego->comida_actual == juego->comida[i].tipo){ 
-            
-            for(int j = 0; j < juego->comida[i].tope_ingredientes; j++){
-
+            while (j < juego->comida[i].tope_ingredientes && !accion){
                 if(distancia_manhattan(juego->comida[i].ingrediente[j].posicion.fil, juego->comida[i].ingrediente[j].posicion.col, personaje->posicion.fil, personaje->posicion.col) == 0 && no_tiene_objeto_en_mano(*personaje)){
                     personaje->objeto_en_mano = juego->comida[i].ingrediente[j].tipo;
-                    j = juego->comida[i].tope_ingredientes;
+                    accion = true;
                 }else if(personaje->objeto_en_mano == juego->comida[i].ingrediente[j].tipo && esta_libre(*juego, personaje->posicion.fil, personaje->posicion.col, false)){
                     personaje->objeto_en_mano = SIN_OBJETO_EN_MANO;
                     juego->comida[i].ingrediente[j].posicion.col = personaje->posicion.col;
                     juego->comida[i].ingrediente[j].posicion.fil = personaje->posicion.fil;
-                    j = juego->comida[i].tope_ingredientes;
+                    accion = true;
                 }
+                j++;
             }
-        i = juego->tope_comida;
+            encotrado = true;
         }
+        i++;
     }
 }
 
@@ -56,9 +61,8 @@ void movimiento_personaje(personaje_t* personaje, char movimiento, juego_t* jueg
 
     dejar_en_la_salida(&juego->reuben, juego);
     
-    if(juego->movimientos > MOVIMIENTOS_FUEGO){
-        agarrar_matafuego(personaje,  juego);
-    }
+    agarrar_matafuego(personaje,  juego);
+
     if(movimiento == ACCION_AGARRAR){
         agarrar_soltar_alimentos(personaje, juego);
     }
@@ -66,26 +70,34 @@ void movimiento_personaje(personaje_t* personaje, char movimiento, juego_t* jueg
 
 void usar_herramienta(personaje_t personaje, juego_t* juego){
 
-    for(int i = 0; i < juego->tope_comida; i++){
+    int i = 0;
+    int j = 0;
+
+    bool encotrado = false;
+    bool accion = false;
+
+    while ( i < juego->tope_comida && !encotrado){
 
         if(juego->comida_actual == juego->comida[i].tipo){ 
             
-            for(int j = 0; j < juego->comida[i].tope_ingredientes; j++){
+            while (j < juego->comida[i].tope_ingredientes && !accion){
                 
                 if(personaje.tipo == STICH){
                     if(personaje.objeto_en_mano == juego->comida[i].ingrediente[j].tipo && puede_usar_herramienta(personaje, *juego, CUCHILLO) && !juego->comida[i].ingrediente[j].esta_cortado){
                         juego->comida[i].ingrediente[j].esta_cortado = true;
-                        j = juego->comida[i].tope_ingredientes;
+                        accion = true;
                     }
                 }else{ 
                     if(personaje.objeto_en_mano == juego->comida[i].ingrediente[j].tipo && puede_usar_herramienta(personaje, *juego, HORNO) && !juego->comida[i].ingrediente[j].esta_cocinado){
                         juego->comida[i].ingrediente[j].esta_cocinado = true;
-                        j = juego->comida[i].tope_ingredientes;
+                        accion = true;
                     }
                 }
+                j++;
             }
-        i = juego->tope_comida;
+            encotrado = true;
         }
+        i++;
     }
 }
 
@@ -93,47 +105,63 @@ void pasar_por_la_mesa(personaje_t* personaje, juego_t* juego){
 
     if(distancia_manhattan(POSICION_MESA, POSICION_MESA, personaje->posicion.fil, personaje->posicion.col) == 1){
         
-        for(int i = 0; i < juego->tope_comida; i++){
+        int i = 0;
+        int j = 0;
+
+        bool encotrado = false;
+        bool accion = false;
+
+        while ( i < juego->tope_comida && !encotrado){
 
             if(juego->comida_actual == juego->comida[i].tipo){ 
                 
-                for(int j = 0; j < juego->comida[i].tope_ingredientes; j++){
+                while (j < juego->comida[i].tope_ingredientes && !accion){
                     
-                        if (personaje->objeto_en_mano == juego->comida[i].ingrediente[j].tipo && mesa_vacia(*juego)){
-                            juego->comida[i].ingrediente[j].posicion.col = POSICION_MESA;
-                            juego->comida[i].ingrediente[j].posicion.fil = POSICION_MESA;
-                            personaje->objeto_en_mano = SIN_OBJETO_EN_MANO;
-                            j = juego->comida[i].tope_ingredientes;
-                        } else if(personaje->objeto_en_mano == SIN_OBJETO_EN_MANO  && !mesa_vacia(*juego)){
-                            personaje->objeto_en_mano = juego->comida[i].ingrediente[j].tipo;
-                            j = juego->comida[i].tope_ingredientes;
-                        }
-            i = juego->tope_comida;
+                    if (personaje->objeto_en_mano == juego->comida[i].ingrediente[j].tipo && mesa_vacia(*juego)){
+                        juego->comida[i].ingrediente[j].posicion.col = POSICION_MESA;
+                        juego->comida[i].ingrediente[j].posicion.fil = POSICION_MESA;
+                        personaje->objeto_en_mano = SIN_OBJETO_EN_MANO;
+                        accion = true;
+                    } else if(personaje->objeto_en_mano == SIN_OBJETO_EN_MANO  && !mesa_vacia(*juego)){
+                        personaje->objeto_en_mano = juego->comida[i].ingrediente[j].tipo;
+                        accion = true;
+                    }
+                    j++;
+                }
+                encotrado = true;
             }
-            
+            i++;
         }
     }
-}}
+}
 
 void dejar_en_la_salida(personaje_t* personaje, juego_t* juego){
 
     if(distancia_manhattan(juego->salida.fil, juego->salida.col, personaje->posicion.fil, personaje->posicion.col) == 0){
+
+        int i = 0;
+        int j = 0;
+
+        bool encotrado = false;
+        bool accion = false;
         
-        for(int i = 0; i < juego->tope_comida; i++){
+        while ( i < juego->tope_comida && !encotrado){
 
             if(juego->comida_actual == juego->comida[i].tipo){ 
 
-                for(int j = 0; j < juego->comida[i].tope_ingredientes; j++){
+                while (j < juego->comida[i].tope_ingredientes && !accion){
 
                     if (personaje->objeto_en_mano == juego->comida[i].ingrediente[j].tipo && esta_listo(j, juego->comida[i])){
                         juego->comida_lista[juego->tope_comida_lista].tipo = juego->comida[i].ingrediente[j].tipo;
                         juego->tope_comida_lista += 1;
                         personaje->objeto_en_mano = SIN_OBJETO_EN_MANO;
-
+                        accion = true;
                     }
+                    j++;
                 }
-            i = juego->tope_comida;
+                encotrado = true;
             }
+            i++;
         }
     }
 }
@@ -141,16 +169,20 @@ void dejar_en_la_salida(personaje_t* personaje, juego_t* juego){
 void nueva_comida(juego_t* juego){
 
     char comidas[MAX_COMIDA] = {ENSALADA, PIZZA, HAMBURGESA, SANGUCHE};
-    int tope_comidas = 4;
 
-    for(int i = 0; i < tope_comidas; i++){
+    int i = 0;
+    
+    bool encotrado = false;
+    
+    while ( i < juego->tope_comida && !encotrado){
 
         if(juego->comida_actual == juego->comida[i].tipo){ 
-                
+
             juego->comida_actual = comidas[i+1];
             juego->tope_comida_lista = 0;
-            i = juego->tope_comida;
+            encotrado = true;
         }
+        i++;
     }
 }
 

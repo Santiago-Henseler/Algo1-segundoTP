@@ -4,39 +4,51 @@
 bool esta_libre(juego_t juego, int fil, int col, bool inicio){
     bool rta = true;
 
+    bool encontrado = false;
+
+    int i = 0;
+    int j = 0;
+
     if((distancia_manhattan(juego.stitch.posicion.fil, juego.stitch.posicion.col, fil, col) == 0 || distancia_manhattan(juego.reuben.posicion.fil, juego.reuben.posicion.col, fil, col) == 0) && inicio){
         rta = false;
     }
 
-    for(int i = 0; i < juego.tope_obstaculos; i++){
+    while (i < juego.tope_obstaculos && !encontrado){
         if(distancia_manhattan(juego.obstaculos[i].posicion.fil, juego.obstaculos[i].posicion.col, fil, col) == 0){
+            encontrado = true;
             rta = false;
-            i = juego.tope_obstaculos;
         }
+        i++;
     }
 
-    for(int i = 0; i < juego.tope_herramientas; i++){
+    i = 0;
+    encontrado = false;
+
+    while (i < juego.tope_herramientas && !encontrado){
         if(distancia_manhattan(juego.herramientas[i].posicion.fil, juego.herramientas[i].posicion.col, fil, col) == 0){
+            encontrado = true;
             rta = false;
-            i = juego.tope_herramientas;
         }
+        i++;
     }
 
-     for(int i = 0; i < juego.tope_comida; i++){
+    i = 0;
+    encontrado = false;
+
+    while (i < juego.tope_comida && !encontrado){
 
         if(juego.comida_actual == juego.comida[i].tipo){ 
             
-            for(int j = 0; j < juego.comida[i].tope_ingredientes; j++){
+            while (j < juego.comida[i].tope_ingredientes && !encontrado){
                 if(distancia_manhattan(juego.comida[i].ingrediente[j].posicion.fil, juego.comida[i].ingrediente[j].posicion.col, fil, col) == 0){
+                    encontrado = true;
                     rta = false;
-                    j = juego.comida[i].tope_ingredientes;
                 }
-  
+                j++;
             }
-        i = juego.tope_comida;
         }
+        i++;
     }
-    
     return rta;
 }
 
