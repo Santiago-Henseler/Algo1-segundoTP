@@ -168,7 +168,7 @@ void dejar_en_la_salida(personaje_t* personaje, juego_t* juego){
 
 void nueva_comida(juego_t* juego){
 
-    char comidas[MAX_COMIDA] = {ENSALADA, PIZZA, HAMBURGESA, SANGUCHE};
+    char comidas[MAX_COMIDA] = {ENSALADA, PIZZA, HAMBURGESA, SANGUCHE,' '};
 
     int i = 0;
     
@@ -183,6 +183,9 @@ void nueva_comida(juego_t* juego){
             encotrado = true;
         }
         i++;
+    }
+    if(!encotrado){
+        juego->comida_actual = comidas[MAX_COMIDA];
     }
 }
 

@@ -16,6 +16,7 @@ void inicializar_juego(juego_t* juego, int precio){
     juego->mesa.fil = POSICION_MESA;
 
     juego->comida_actual = ENSALADA;
+
     juego->tope_comida = 0;
     juego->tope_comida_lista = 0;
 
