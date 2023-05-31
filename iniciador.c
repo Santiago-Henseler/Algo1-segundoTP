@@ -42,7 +42,7 @@ void iniciar_comidas(juego_t* juego, int precio){
         }
 
  
-    if(precio > SEGUNDO_MENU && juego->comida_actual == HAMBURGESA){
+    if(juego->comida_actual == HAMBURGESA){
         // Inicializo Hamburgesa
         juego->comida[juego->tope_comida].tipo = HAMBURGESA;
 
@@ -60,7 +60,7 @@ void iniciar_comidas(juego_t* juego, int precio){
         juego->tope_comida++;
     }
 
-    if(precio > TERCER_MENU){
+    if(juego->comida_actual == SANGUCHE){
         // Inicializo sanguche
         juego->comida[juego->tope_comida].tipo = SANGUCHE;
 
@@ -92,21 +92,21 @@ void crear_mapa(coordenada_t paredes[MAX_PAREDES], int* tope_paredes){
     *tope_paredes = 0;
 
     for(int i = 0; i < LARGO_TABLERO; i++){
-            for(int j = 0; j <= LARGO_TABLERO; j++){
-                if(j != 10 && i != 10){
-                    if(i == 0 || i == 20 || i == 10){
-                        paredes[*tope_paredes].fil = i;
-                        paredes[*tope_paredes].col = j;
-                        (*tope_paredes)++;
+        for(int j = 0; j <= LARGO_TABLERO; j++){
+            if(j != 10 || i != 10){
+                if(i == 0 || i == 20 || i == 10){
+                    paredes[*tope_paredes].fil = i;
+                    paredes[*tope_paredes].col = j;
+                    (*tope_paredes)++;
                         
-                    }else if(j == 0 || j == LARGO_TABLERO){
-                        paredes[*tope_paredes].fil = i;
-                        paredes[*tope_paredes].col = j;
-                        (*tope_paredes)++;
-                    }
+                }else if(j == 0 || j == LARGO_TABLERO){
+                    paredes[*tope_paredes].fil = i;
+                    paredes[*tope_paredes].col = j;
+                    (*tope_paredes)++;
                 }
             }
         }
+    }
 }
 
 void iniciar_objetos(juego_t* juego){

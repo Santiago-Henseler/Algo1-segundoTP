@@ -6,18 +6,17 @@ void cargar_terreno(juego_t juego, char terreno[LARGO_TABLERO][LARGO_TABLERO]){
     for(int i = 0; i < LARGO_TABLERO; i++){
 
         for(int j = 0; j< LARGO_TABLERO; j++){
-
-            if(i == 0 || i == 20 || i == 10){       
-                terreno[i][j] = PARED;
-            }else if(j == 0 || j == 20){
-                terreno[i][j] = PARED;
-            }else{
-                terreno[i][j] = ' ';
-            }
+                if(i == 0 || i == 20 || i == 10){       
+                    terreno[i][j] = PARED;
+                }else if(j == 0 || j == 20){
+                    terreno[i][j] = PARED;
+                }else{
+                    terreno[i][j] = ' ';
+                }
         }
     }
     
-    // posiciones de la mesa y de la salida
+    //posiciones de la mesa y de la salida
     terreno[juego.salida.fil][juego.salida.col] = SALIDAD;
     terreno[juego.mesa.fil][juego.mesa.col] = MESA;
 
