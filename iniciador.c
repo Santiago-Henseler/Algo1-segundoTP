@@ -92,14 +92,14 @@ void crear_mapa(coordenada_t paredes[MAX_PAREDES], int* tope_paredes){
     *tope_paredes = 0;
 
     for(int i = 0; i < LARGO_TABLERO; i++){
-        for(int j = 0; j <= LARGO_TABLERO; j++){
+        for(int j = 0; j < LARGO_TABLERO; j++){
             if(j != 10 || i != 10){
                 if(i == 0 || i == 20 || i == 10){
                     paredes[*tope_paredes].fil = i;
                     paredes[*tope_paredes].col = j;
                     (*tope_paredes)++;
                         
-                }else if(j == 0 || j == LARGO_TABLERO){
+                }else if(j == 0 || j == 20){
                     paredes[*tope_paredes].fil = i;
                     paredes[*tope_paredes].col = j;
                     (*tope_paredes)++;

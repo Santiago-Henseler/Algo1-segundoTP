@@ -184,9 +184,6 @@ void nueva_comida(juego_t* juego){
         }
         i++;
     }
-    if(!encotrado){
-        juego->comida_actual = comidas[MAX_COMIDA];
-    }
 }
 
 void apagar_fuego(personaje_t* personaje, juego_t* juego){
