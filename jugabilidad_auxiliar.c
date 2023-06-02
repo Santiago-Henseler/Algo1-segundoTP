@@ -156,6 +156,9 @@ bool fuego_activo(juego_t juego){
 void hud(juego_t juego){
 
     char objeto = SIN_OBJETO_EN_MANO;
+    bool encontrado = false;
+    int i = 0;
+    int j = 0;
 
     if(juego.personaje_activo == 'S'){
         objeto = juego.stitch.objeto_en_mano;
@@ -164,5 +167,39 @@ void hud(juego_t juego){
     }
 
     printf("Personaje activo: %c Objeto activo: %c\n", juego.personaje_activo, objeto);
+
+    if(objeto != SIN_OBJETO_EN_MANO){
+        while (i < juego.tope_comida && !encontrado){
+            if(juego.comida_actual == juego.comida[i].tipo){ 
+                
+                while (j < juego.comida[i].tope_ingredientes && !encontrado){
+                    if(objeto == juego.comida[i].ingrediente[j].tipo && ingrediente_de_ruben(i, *juego.comida)){
+                        if(juego.comida[i].ingrediente[j].esta_cocinado){
+                            printf("Ingrediente cocinado\n");
+                        }else{
+                            printf("Ingrediente no cocinado\n");
+                        }
+                        encontrado = true; 
+                    }else if(objeto == juego.comida[i].ingrediente[j].tipo && !ingrediente_de_ruben(i, *juego.comida)){
+                        if(juego.comida[i].ingrediente[j].esta_cortado){
+                            printf("Ingrediente cortado\n");
+                        }else{
+                            printf("Ingrediente no cortado\n");
+                        }
+                        encontrado = true; 
+                    }
+                    j++;
+                }
+            }
+            i++;
+        }
+    }
     
+    printf("Comida actual: %c\n", juego.comida_actual);
+
+    printf("Ingredietes entregados: [");
+    for(int k = 0; k < juego.tope_comida_lista; k++){
+        printf(" %c,", juego.comida_lista[k].tipo);
+    } 
+    printf("]\n");
 }

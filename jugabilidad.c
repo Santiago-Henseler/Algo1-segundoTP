@@ -122,7 +122,7 @@ void pasar_por_la_mesa(personaje_t* personaje, juego_t* juego){
                         juego->comida[i].ingrediente[j].posicion.fil = POSICION_MESA;
                         personaje->objeto_en_mano = SIN_OBJETO_EN_MANO;
                         accion = true;
-                    } else if(personaje->objeto_en_mano == SIN_OBJETO_EN_MANO  && !mesa_vacia(*juego)){
+                    } else if(personaje->objeto_en_mano == SIN_OBJETO_EN_MANO  && !mesa_vacia(*juego) && distancia_manhattan(juego->comida[i].ingrediente[j].posicion.fil, juego->comida[i].ingrediente[j].posicion.col, POSICION_MESA, POSICION_MESA) == 0){
                         personaje->objeto_en_mano = juego->comida[i].ingrediente[j].tipo;
                         accion = true;
                     }
