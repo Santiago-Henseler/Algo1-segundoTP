@@ -81,7 +81,7 @@ void realizar_jugada(juego_t* juego, char movimiento){
         }
     }
     
-    if(termino_comida(*juego)){
+    if(termino_comida(*juego) && juego->comida_actual != SANGUCHE){
         nueva_comida(juego);
         iniciar_comidas(juego, juego->precio_total);
     }
@@ -107,7 +107,7 @@ int estado_juego(juego_t juego){
            estado = 1;
         }else if(juego.precio_total <= SEGUNDO_MENU && juego.comida_actual == HAMBURGESA){ 
            estado = 1;
-        }else if(juego.precio_total > TERCER_MENU && juego.comida_actual == SANGUCHE && termino_comida(juego)){ 
+        }else if(juego.precio_total > TERCER_MENU && juego.comida_actual == SANGUCHE){ 
            estado = 1;
         }
     }
